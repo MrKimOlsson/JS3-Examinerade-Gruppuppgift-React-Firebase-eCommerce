@@ -9,7 +9,7 @@ function Contact() {
     <>
     <WideHero />
     <ContactForm />
-    {/* <Contactmap /> */}
+    <Contactmap />
     </>
     )
 }
