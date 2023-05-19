@@ -1,0 +1,22 @@
+.related-products-component-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.related-products-component-container {
+    width: 1200px;
+}
+
+.related-products-component-container h3{
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.related-products-grid-container {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    border-bottom: 1px solid #ecebeb;
+    margin-bottom: 5rem;
+}

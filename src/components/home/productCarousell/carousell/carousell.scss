@@ -1,0 +1,37 @@
+.carousellContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    /* margin: 0rem 4rem 0rem 4rem; */
+    overflow-x: hidden;
+}
+
+.carousellProduct {
+    text-align: left;
+}
+
+.carousellTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.caousellTitle, span {
+    color: #aaa;
+}
+.carousellimg {
+    height: 270px;
+    width: 295px;
+}
+.carousellText {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    gap: .5rem;
+    font-size: 1.1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f8f8f8;
+}

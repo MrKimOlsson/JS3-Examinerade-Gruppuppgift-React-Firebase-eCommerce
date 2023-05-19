@@ -1,0 +1,24 @@
+.post-wrapper {
+    display: flex;
+    gap: 2rem;
+}
+
+
+.post {
+    line-height: 1.7rem;
+    margin: 1rem 0rem 4rem 0rem;
+    border-bottom: 1px solid #f8f8f8;
+}
+
+.postTitle {
+    font-size: 1.2rem;
+    margin: 1rem 0rem 1rem 0rem;
+}
+
+.postAuthor {
+    display: flex;
+    gap: 2rem;
+    margin: 1rem 0rem 1rem 0rem;
+    font-size: .8rem;
+    color: #aaa;
+}

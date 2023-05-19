@@ -1,0 +1,20 @@
+
+.small-carousell-component-wrapper {
+    display: flex;
+    justify-content: center;
+    background-color: #fafafa;
+    width: 100%;
+}
+
+.small-carousell-component-container {
+    width: 1200px;
+    margin: 5rem 0rem 3rem 0rem;
+}
+
+
+.small-carousell-product-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+}

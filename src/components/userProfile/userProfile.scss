@@ -1,0 +1,101 @@
+.up-wrapper {
+    min-height: 80vh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.up-container {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 1rem;
+    width: 30%;
+    border-radius: 1.5rem;
+    margin-block: 2rem;
+}
+
+.up-container * {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.up-inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.up-inner-container .up-user-icon{
+    font-size: 3.5rem;
+    background-color: rgba(250, 49, 79, 0.814);
+    border-radius: .3rem;
+    padding: .3rem;
+    color: white;
+}
+
+.up-icon-container {
+    display: grid;
+    place-items: center;
+}
+
+.up-user-info {
+    margin-top: 4rem;
+}
+
+.up-user-info .up-user-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block: .7rem;
+    width: 100%;
+}
+
+.up-edit {
+    font-size: 1.5rem;
+    
+}
+
+.up-user-detail li {
+    list-style: none;
+}
+
+.up-changeP {
+    text-decoration: none;
+    color: rgb(43, 43, 240);
+}
+
+.up-user-detail:last-of-type {
+    margin-top: 2rem;
+}
+
+.up-save {
+    display: inline-block;
+    width: min-content;
+    height: min-content;
+    padding: .5rem 2rem;
+    margin-top: 2rem;
+    background-color: rgba(250, 49, 79, 0.814);
+    border: 0;
+    border-radius: .2rem;
+    color: white;
+    letter-spacing: .5px;
+    margin-bottom: 2rem;
+}
+
+.up-options {
+    padding-top: 2rem;
+    border-top: 1px solid black;
+}
+
+.up-options-link {
+    text-decoration: none;
+    color: rgb(43, 43, 240);
+    font-size: .8rem;
+}
+
+.up-options-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+

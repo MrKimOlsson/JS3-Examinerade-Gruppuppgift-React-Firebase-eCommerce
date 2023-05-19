@@ -1,0 +1,46 @@
+.text-center {
+    text-align: center;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.addProductform {
+    // width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // align-items: center;
+    // text-align: left;
+    margin: 3rem 0rem 6rem 0rem;
+    padding: 2rem;
+    box-shadow: .05rem .05rem .5rem #0000007c;
+}
+
+.input-group {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+.form-control {
+    width: 20rem;
+    padding: .2rem;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.addProductFormBtn {
+    margin: 2rem 0rem 1rem 0rem;
+}
+

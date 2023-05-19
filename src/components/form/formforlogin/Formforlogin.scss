@@ -1,0 +1,63 @@
+.form-login-wrapper {
+  box-sizing: border-box;
+  padding-left: 20rem;
+  padding-top: 20rem;
+  color: rgb(99, 99, 99);
+  margin-bottom: 20rem;
+}
+
+.form-login-container h4 {
+  font-family: Roboto-Regular, Roboto;
+  letter-spacing: 0.01em;
+  font-weight: 100;
+  text-align: start;
+
+}
+
+.form-login-container {
+  height: auto;
+  max-width: 90vh;
+  box-shadow: .2px .2px 2px darkgrey;
+  padding: 1.5rem 2rem;
+  margin: 4rem;
+  display: flex;
+  /* grid-template-columns: repeat(2, 1fr); */
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0px 0px 30px 0px #a1a1a118;
+}
+
+.input-group-login {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+}
+
+.form-label-link {
+  padding: 0 0 .5rem;
+}
+
+.form-link-register-padding {
+  padding: 0 0 1rem 1rem;
+  text-decoration: none;
+  color: firebrick;
+  font-size: .8rem;
+}
+
+.input-login {
+  height: 3rem;
+  border: 0;
+  font-size: 1.5rem;
+  padding-left: 10px;
+  background-color: #fafafa;
+}
+
+.form-label-link-two {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.login-checkbox {
+  margin-top: .5rem;
+}

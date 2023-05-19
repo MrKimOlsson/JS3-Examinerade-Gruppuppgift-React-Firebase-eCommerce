@@ -1,0 +1,10 @@
+.wideHeroContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#wideheroid {    
+    width: 1920px;
+    height: 300px;
+    object-fit: cover;
+}

@@ -1,0 +1,35 @@
+.productCarousell-wrapper {
+    background-color: #fff;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    margin: 5rem 0rem 5rem 0rem; 
+}
+
+.productCarousell-container {
+    width: 100%;
+    height: 100%;
+}
+.btn-center {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.adminPostBtn {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.adminPostBtn button {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border-style: none;
+    border: 1px solid #000;
+    font-size: 1.1rem;
+}

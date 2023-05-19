@@ -1,0 +1,17 @@
+.footer {
+    position: relative;
+    bottom: 0;
+    height: 6em;
+    width: 100%;
+    background-color: rgb(41, 41, 41);
+
+}
+
+.copyrightText {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+    color: rgb(165, 165, 165);
+    font-size: 16;
+    font-family: Poppins-Regular, Poppins;
+}
