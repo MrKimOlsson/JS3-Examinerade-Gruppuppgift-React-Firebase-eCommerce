@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { db } from '../../../firebase/config';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 import Btnregister from './btnregister/Btnregister';
 import './Formforregister.scss';
 import { useNavigate } from 'react-router-dom';
@@ -44,11 +44,10 @@ const Formforregister = () => {
         postalCode,
         city,
         email,
-        password,
-        passwordConfirm,
         profilePic,
       };
-      const docRef = await addDoc(collectionRef, userData);
+      const docRef = doc(collectionRef, user.uid);
+      await setDoc(docRef, userData);
 
       console.log('New user ID:', docRef.id);
       console.log('Registered user:', user);
