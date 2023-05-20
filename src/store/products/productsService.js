@@ -24,11 +24,11 @@ const getAllAsync = async (col) => {
   return products
 }
 
-const getAsync = async (col, id) => {
-  const docRef = doc(db, col, id)
-  const docSnapshot = await getDoc(docRef)
-  return { id: docSnapshot.id, ...docSnapshot.data() }
-}
+// const getAsync = async (col, id) => {
+//   const docRef = doc(db, col, id)
+//   const docSnapshot = await getDoc(docRef)
+//   return { id: docSnapshot.id, ...docSnapshot.data() }
+// }
 
 const productsService = {
   createProduct,

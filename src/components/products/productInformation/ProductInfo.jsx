@@ -9,35 +9,34 @@ import { useDispatch, useSelector } from 'react-redux'
 import { clearProduct, getProductById } from '../../../store/products/singleProductSlice'
 
 
-const ProductInfo = () => {
+const ProductInfo = ({ product }) => {
 
-  const dispatch = useDispatch()
-  const { id } = useParams()
+  // const dispatch = useDispatch()
+  // const { id } = useParams()
 
-  useEffect(() => {
-    dispatch(getProductById(id))
+  // useEffect(() => {
+  //   dispatch(getProductById(id))
 
-    return () => {
-      dispatch(clearProduct())
-    }
+  //   return () => {
+  //     dispatch(clearProduct())
+  //   }
 
-  }, [])
+  // }, [])
 
-  const { product, loading, error } = useSelector(state => state.singleProduct)
+  // const { product, loading, error } = useSelector(state => state.singleProduct)
 
-  if(error) {
-    return (
-      <div>
-        <h2>{error}</h2>
-      </div>
-    )
-  }
+  // if(error) {
+  //   return (
+  //     <div>
+  //       <h2>{error}</h2>
+  //     </div>
+  //   )
+  // }
 
 
   return (
     <>
-    { loading && <p>Loading...</p> }
-     { product &&
+    
     <div className='product-info-component-wrapper'>
         <ProductInfoMenu />
         <div className='product-info-title-container'>
@@ -56,7 +55,7 @@ const ProductInfo = () => {
 
 
 
-    </div>}
+    </div>
      </>
   )
 }

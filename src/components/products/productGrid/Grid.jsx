@@ -16,14 +16,11 @@ const Grid = ({ products }) => {
     <div className='grid-component'>
         <div className='grid-container'>
 
-            {/* { loading && <p>Loading...</p> }
-            { error && <p>{error}</p> } */}
-
             {
             products.length > 0
             ? products.map(product => <Product key={product.id} product={product} />)
             : <h2>No products to show</h2>
-          }
+            }
         
       </div>
     </div>

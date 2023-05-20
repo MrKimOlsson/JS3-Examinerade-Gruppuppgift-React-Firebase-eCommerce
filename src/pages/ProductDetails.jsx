@@ -5,42 +5,54 @@ import ProductInfo from '../components/products/productInformation/ProductInfo'
 import RelatedProducts from '../components/products/relatedProducts/RelatedProducts'
 import SmallProductCarousell from '../components/products/smallCarousell/SmallProductCarousell'
 // import { useEffect, useState } from 'react'
+import useDoc from '../hooks/useDoc'
 // import { useParams } from 'react-router-dom'
+import Loader from '../components/loader/Loader'
 // // import { useFetch } from '../hooks/useFetch'
 // import Product from '../components/product/Product'
-// import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 // import { getAllProducts } from '../features/products/productsSlice'
-// import { useEffect, useState } from 'react'
-// import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 // import { useDispatch, useSelector } from 'react-redux'
 // import Product from '../components/product/Product'
-// import { clearProduct, getProductById } from '../features/products/singleProductSlice'
+import { clearProduct, getProductById } from '../store/products/singleProductSlice'
 
 
 function ProductDetails() {
 
+  
+  const { id } = useParams()
+  const { data : product, error, loading } = useDoc('products', id)
 
-//   const dispatch = useDispatch()
-//   const { id } = useParams()
+  if(!product) return (
+    <div>
+      { loading && <Loader />}
+      { error && <p>{error}</p>}
+    </div>
+  )
 
-//   useEffect(() => {
-//     dispatch(getProductById(id))
+  // const dispatch = useDispatch()
+  // const { id } = useParams()
 
-//     return () => {
-//       dispatch(clearProduct())
-//     }
+  // useEffect(() => {
+  //   dispatch(getProductById(id))
 
-//   }, [])
+  //   return () => {
+  //     dispatch(clearProduct())
+  //   }
 
-//   const { product, loading, error } = useSelector(state => state.singleProduct)
+  // }, [])
 
-//   if(error) {
-//     return (
-//       <div>
-//         <h2>{error}</h2>
-//       </div>
-//     )
-//   }
+  // const { product, loading, error } = useSelector(state => state.singleProduct)
+
+  // if(error) {
+  //   return (
+  //     <div>
+  //       <h2>{error}</h2>
+  //     </div>
+  //   )
+  // }
 
   
   // const [product, setProduct] = useState(null)
@@ -63,14 +75,21 @@ function ProductDetails() {
   
   
   return (
-    <div>
 
-      <WideHero />
-      <Details />
-      <ProductInfo />
-      <RelatedProducts />
-      <SmallProductCarousell />
-    </div>
+ <>
+      <WideHero key={'wideHeroProductKey'} product={product} />
+      <Details  key={'detailsProductKey'} product={product}/>
+      <ProductInfo key={'productInfoProductKey'} product={product} />
+      <RelatedProducts key={'RelatedProductsProductKey'} product={product} />
+      <SmallProductCarousell key={'SmallProductCarousellProductKey'} product={product} />
+ </>
+  
+
+     
+
+
+  
+   
   )
 }
 
