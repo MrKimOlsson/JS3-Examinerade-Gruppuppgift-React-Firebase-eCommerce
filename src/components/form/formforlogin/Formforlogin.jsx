@@ -1,33 +1,32 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import './Formforlogin.scss';
 import { Form, Link, useNavigate } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import Formbtn from './btnlogin/Formbtn';
+import './Formforlogin.scss'
 
 const Formforlogin = ({ handleLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const navigate = useNavigate();
 
+
   const submitLogin = async (e) => {
+    const auth = getAuth();
     e.preventDefault();
+
+    console.log('Email:', email);
+    console.log('Password:', password);
+
     try {
-      const res = await axios.post('http://localhost:9999/api/user/login', {
-        email,
-        password,
-      });
-      localStorage.removeItem('token'); // remove any existing token
-      // localStorage.setItem('token', res.data.token); // set new token
-      localStorage.setItem('user', JSON.stringify(res.data))
-      console.log(res.data)
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      console.log('Logged in user:', user);
       handleLogin(); // update isLoggedIn state
       navigate('/');
     } catch (error) {
-      console.log(error); // handle error
+      console.log('Login error:', error);
     }
   };
-
 
   return (
     <div className='form-login-wrapper'>
@@ -53,4 +52,3 @@ const Formforlogin = ({ handleLogin }) => {
 };
 
 export default Formforlogin;
-

@@ -1,13 +1,13 @@
-import React from 'react'
-import { Form } from 'react-router-dom'
-import Btnregister from './btnregister/Btnregister'
-import './Formforregister.scss'
-import { useState, ChangeEvent } from 'react'
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Form } from 'react-router-dom';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { db } from '../../../firebase/config';
+import { addDoc, collection } from 'firebase/firestore';
+import Btnregister from './btnregister/Btnregister';
+import './Formforregister.scss';
+import { useNavigate } from 'react-router-dom';
 
 const Formforregister = () => {
-
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [streetName, setStreetName] = useState('');
@@ -16,20 +16,28 @@ const Formforregister = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [profilePic, setprofilePic] = useState('')
+  const [profilePic, setProfilePic] = useState('');
 
   const navigate = useNavigate();
 
   const handleProfilePicChange = (event) => {
-    setprofilePic(event.target.files[0]);
+    setProfilePic(event.target.files[0]);
   };
-
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!firstName || !lastName || !streetName || !postalCode || !city || !email || !password || !passwordConfirm) {
+      console.log('Please fill in all required fields with *');
+      return;
+    }
+
     try {
-      const response = await axios.post('http://localhost:9999/api/user', {
+      const auth = getAuth();
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      const collectionRef = collection(db, 'users');
+
+      const userData = {
         firstName,
         lastName,
         streetName,
@@ -38,26 +46,28 @@ const Formforregister = () => {
         email,
         password,
         passwordConfirm,
-        profilePic
-      });
+        profilePic,
+      };
+      const docRef = await addDoc(collectionRef, userData);
 
-      console.log('New user:', {
-        firstName,
-        lastName,
-        streetName,
-        postalCode,
-        city,
-        email,
-      });
+      console.log('New user ID:', docRef.id);
+      console.log('Registered user:', user);
 
-      console.log(response.data);
+      // Reset form fields after successful submission
+      setFirstName('');
+      setLastName('');
+      setStreetName('');
+      setPostalCode('');
+      setCity('');
+      setEmail('');
+      setPassword('');
+      setPasswordConfirm('');
+      setProfilePic('');
       navigate('/');
     } catch (error) {
       console.error(error);
     }
   };
-
-
   return (
     <div className='form-register-wrapper'>
       <div className='form-register-container'>
@@ -124,6 +134,6 @@ const Formforregister = () => {
       </div>
     </div>
   )
-}
+};
 
-export default Formforregister
+export default Formforregister;
