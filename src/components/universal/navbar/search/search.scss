@@ -14,7 +14,8 @@
 }
 .clicked{
     visibility: hidden;
-
+    display: none;
+    position: absolute;
 }
 .searchbtnform {
     width: 3rem;
