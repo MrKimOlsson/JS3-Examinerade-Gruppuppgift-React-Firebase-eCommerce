@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import './hero.scss'
-import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
+import { AiOutlineLeft, AiOutlineRight } from 'react-icons/Ai'
 import { Link } from 'react-router-dom'
 
 const Hero = ({ products }) => {
