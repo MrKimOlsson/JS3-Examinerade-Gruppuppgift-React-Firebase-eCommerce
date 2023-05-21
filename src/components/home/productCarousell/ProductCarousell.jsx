@@ -11,29 +11,29 @@ const ProductCarousell = ({ products }) => {
   const handleRightScroll = () => {
     const carousel = carousellRef.current;
     if (carousel) {
-      carousel.scrollBy({ left: 200, behavior: 'smooth' });
+      carousel.scrollBy({ left: 300, behavior: 'smooth' });
     }
   };
   // scroll left
   const handleLeftScroll = () => {
     const carousel = carousellRef.current;
     if (carousel) {
-      carousel.scrollBy({ left: -200, behavior: 'smooth' })
+      carousel.scrollBy({ left: -300, behavior: 'smooth' })
     }
   };
   // autoscroll, improvment needed
-  const handleAutoScroll = () => {
-    const carousel = carousellRef.current;
-    if (carousel) {
-      carousel.scrollBy({ left: 1, behavior: 'smooth' })
-    }
-  }
-  useEffect(() => {
-    const intervalId = setInterval(handleAutoScroll, 1000); 
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
+  // const handleAutoScroll = () => {
+  //   const carousel = carousellRef.current;
+  //   if (carousel) {
+  //     carousel.scrollBy({ left: 1, behavior: 'smooth' })
+  //   }
+  // }
+  // useEffect(() => {
+  //   const intervalId = setInterval(handleAutoScroll, 1000); 
+  //   return () => {
+  //     clearInterval(intervalId);
+  //   };
+  // }, []);
   
   return (
     <div className='productCarousell-wrapper'>
