@@ -1,0 +1,25 @@
+.searchform {
+    display: flex;
+    .searchbtn {
+        width: 3rem;
+        height: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+.searchinput {
+    width: 6rem;
+}
+}
+.clicked{
+    visibility: hidden;
+
+}
+.searchbtnform {
+    width: 3rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
