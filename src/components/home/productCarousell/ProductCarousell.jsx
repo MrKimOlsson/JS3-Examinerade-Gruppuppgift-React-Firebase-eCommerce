@@ -11,14 +11,14 @@ const ProductCarousell = ({ products }) => {
   const handleRightScroll = () => {
     const carousel = carousellRef.current;
     if (carousel) {
-      carousel.scrollBy({ left: 300, behavior: 'smooth' });
+      carousel.scrollBy({ left: 330, behavior: 'smooth' });
     }
   };
   // scroll left
   const handleLeftScroll = () => {
     const carousel = carousellRef.current;
     if (carousel) {
-      carousel.scrollBy({ left: -300, behavior: 'smooth' })
+      carousel.scrollBy({ left: -330, behavior: 'smooth' })
     }
   };
   // autoscroll, improvment needed
