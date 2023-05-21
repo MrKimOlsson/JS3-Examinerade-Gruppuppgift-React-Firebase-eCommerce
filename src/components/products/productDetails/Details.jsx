@@ -10,7 +10,7 @@ const Details = ({ product }) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(addToCart(product)); // Dispatch the addToCart action with the product as payload
+    dispatch(addToCart(product)); 
   };
 
   return (
