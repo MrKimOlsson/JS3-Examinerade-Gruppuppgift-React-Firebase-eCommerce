@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { db } from '../../../firebase/config';
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, setDoc, getDocs } from 'firebase/firestore';
 import Btnregister from './btnregister/Btnregister';
 import './Formforregister.scss';
 import { useNavigate } from 'react-router-dom';
@@ -33,6 +33,16 @@ const Formforregister = () => {
 
     try {
       const auth = getAuth();
+
+      // Check if the email is already registered
+      const usersCollection = collection(db, 'users');
+      const querySnapshot = await getDocs(usersCollection);
+      const isEmailExists = querySnapshot.docs.some((doc) => doc.data().email === email);
+      if (isEmailExists) {
+        console.log('Email already exists. Please use a different email.');
+        return;
+      }
+
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       const collectionRef = collection(db, 'users');
@@ -67,6 +77,7 @@ const Formforregister = () => {
       console.error(error);
     }
   };
+
   return (
     <div className='form-register-wrapper'>
       <div className='form-register-container'>

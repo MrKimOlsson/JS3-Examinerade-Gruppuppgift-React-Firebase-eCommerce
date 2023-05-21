@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Form, Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { connect } from 'react-redux';
+import { setUser } from '../../../app/action'
 import Formbtn from './btnlogin/Formbtn';
-import './Formforlogin.scss'
+import './Formforlogin.scss';
+
 
 const Formforlogin = ({ handleLogin }) => {
   const [email, setEmail] = useState('');
@@ -21,6 +24,10 @@ const Formforlogin = ({ handleLogin }) => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       console.log('Logged in user:', user);
+
+      // Dispatch the setUser action to store the user in Redux
+      setUser(user);
+
       handleLogin(); // update isLoggedIn state
       navigate('/');
     } catch (error) {
