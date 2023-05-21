@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import '../components/products/productGrid/gridButton/GridButton'
 import Hero from '../components/home/hero/Hero'
 import GridMenu from '../components/products/productGrid/gridMenu/GridMenu'
 import Grid from '../components/products/productGrid/Grid'

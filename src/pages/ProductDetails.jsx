@@ -17,9 +17,6 @@ function ProductDetails({ products }) {
   const { id } = useParams()
   let [ _id, set_id] = useState(id);
 
-
-  
-  
   const { data: product, error, loading } = useDoc('products', _id)
   if (!product) return (
     <div>
