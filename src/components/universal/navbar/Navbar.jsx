@@ -6,7 +6,7 @@ import './navbar.scss'
 import {FaShoppingCart} from 'react-icons/fa'
 import SearchModal from './search/SearchModal'
 
-const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
+const Navbar = ({ products, isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -28,7 +28,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
           <li><NavLink className='nav-link' to='/contact'>Contact</NavLink></li>
           <li><NavLink className='nav-link' to='/addProduct'>Add-Products</NavLink></li>
           {/* <li><FiSearch className='opacity height' /></li> */}
-          <SearchModal />
+          <SearchModal key={products._id} products={products}/>
           {isLoggedIn ? ( // show the logout button if the user is logged in
             <>
               <li><NavLink className='nav-link lowercase opacity' to='/userprofile'>user</NavLink></li>

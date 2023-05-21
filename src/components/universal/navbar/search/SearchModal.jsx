@@ -2,19 +2,35 @@ import React, { useState } from 'react';
 import './search.scss'
 import {FiSearch} from 'react-icons/fi'
 
-const SearchModal = () => {
+const SearchModal = ({ products }) => {
   const [search, setSearch] = useState('');
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  
 
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
+ 
   };
+
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     console.log(search);
+    console.log(products)
+
     
+    // Product catergory search function
+    products.forEach(product => {
+      if(product.category.includes(search)){
+        console.log('You got a match')
+        let matches = product
+        console.log(matches)
+      }
+      console.log('No match')
+    });
+
+   
     // reset form
     setSearch('');
     setIsFormVisible(false);
@@ -28,6 +44,11 @@ const SearchModal = () => {
   const handleButtonClick = () => {
     setIsButtonClicked(false); 
   };
+
+
+  
+
+  
 
   return (
     <div>
