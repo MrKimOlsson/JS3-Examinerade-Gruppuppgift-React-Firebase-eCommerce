@@ -2,7 +2,14 @@ import React from 'react'
 import './hero.scss'
 import HeroProduct from '../../../images/625x647.svg'
 
-const Hero = () => {
+const Hero = ({ products }) => {
+
+  {
+    products.length > 0
+    ? products.map(product =>  product)
+    : <h2>No products to show</h2>
+  }
+
   return (
     <div className='hero'>
       <div className='hero-container'>
