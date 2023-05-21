@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom'
 
 const Product = ({ product }) => {
   return (
-    <div className='product'>
+    <div>
       <Link to={`/productDetails/${product.id}`}>
+        <div className='productGridTitleContainer'>
         <h2>{product.title}</h2>
+        </div>
         <img className='productGridImage' src={product.imageURL[0]} alt="Product image"/>
-        {/* <p>{product.body.slice(0,40)}...</p> */}
       </Link>
     </div>
   )
