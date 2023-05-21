@@ -21,19 +21,13 @@ let displayProducts = products.slice(0, baseAmount)
           ? <Hero key={products._id} products={products} />
           : <h2>No products to show</h2>
       }
-        {/* {
-            products.length > 0
-            ? products.map(product => <Hero key={product.id} product={product} />)
-            : <h2>No products to show</h2>
-            } */}
       <GridMenu />
       {
         displayProducts.length > 0
           ? <Grid key={displayProducts._id} displayProducts={displayProducts} />
           : <h2>No products to show</h2>
       }
-      {/* <GridButton /> */}
-
+      
       <div className='grid-button-container'>
         {/* On click - the amount of the grid will increse by 8 */}
         <button onClick={() => setBaseAmount(baseAmount + 8)}>LOAD MORE</button>

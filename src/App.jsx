@@ -18,6 +18,14 @@ import Register from './pages/Register'
 import ForgotPassword from './pages/ForgotPassword'
 import UserProfile from './pages/UserProfile'
 import AddProduct from './pages/AddProducts'
+import ProductSearch from './pages/ProductSearch'
+import Coats from './pages/categories/Coats'
+import Footwear from './pages/categories/Footwear'
+import Hats from './pages/categories/Hats'
+import Hoodies from './pages/categories/Hoodies'
+import Pants from './pages/categories/Pants'
+import Sweaters from './pages/categories/Sweaters'
+import Tshirts from './pages/categories/Tshirts'
 
 
 
@@ -50,7 +58,7 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <RootLayout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
+      element: <RootLayout key={products._id} products={products} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />,
       errorElement: <Error />,
       children: [
         {
@@ -98,20 +106,77 @@ const App = () => {
           path: 'cart',
           element: <Cart />
         },
-
         {
           path: 'products',
           element:<Products/>
             
         },
         {
+          path: 'products/coats',
+          element: <>{ 
+            products.length > 0
+                ? <Coats key={products.id} products={products} />
+                : <h2>No products to show</h2>
+              }</>
+        },
+        {
+          path: 'products/footwear',
+          element: <>{ 
+            products.length > 0
+                ? <Footwear key={products.id} products={products} />
+                : <h2>No products to show</h2>
+              }</>
+        },
+        {
+          path: 'products/hats',
+          element: <>{ 
+            products.length > 0
+                ? <Hats key={products.id} products={products} />
+                : <h2>No products to show</h2>
+              }</>
+        },
+        {
+          path: 'products/hoodies',
+          element: <>{ 
+            products.length > 0
+                ? <Hoodies key={products.id} products={products} />
+                : <h2>No products to show</h2>
+              }</>
+        },
+        {
+          path: 'products/pants',
+          element: <>{ 
+            products.length > 0
+                ? <Pants key={products.id} products={products} />
+                : <h2>No products to show</h2>
+              }</>
+        },
+        {
+          path: 'products/sweaters',
+          element: <>{ 
+            products.length > 0
+                ? <Sweaters key={products.id} products={products} />
+                : <h2>No products to show</h2>
+              }</>
+        },
+        {
+          path: 'products/t-shirts',
+          element: <>{ 
+            products.length > 0
+                ? <Tshirts key={products.id} products={products} />
+                : <h2>No products to show</h2>
+              }</>
+        },
+        {
+          path: 'productSearch',
+          element:<ProductSearch/>
+            
+        },
+        {
           path: 'productDetails/:id',
           element: <ProductDetails />
         },
-        {
-          path: 'productDetails',
-          element: <ProductDetails />
-        },
+
         {
           path: 'forgotpassword',
           element: <ForgotPassword />

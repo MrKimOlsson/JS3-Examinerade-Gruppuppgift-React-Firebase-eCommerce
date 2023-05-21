@@ -9,9 +9,7 @@ const Details = ({ product }) => {
 
   return (
     <>
-      {/* {loading && <p>Loading...</p>}
-      {product && */}
-
+  
         <div className='details-wrapper'>
 
           <div className='details-container'>
