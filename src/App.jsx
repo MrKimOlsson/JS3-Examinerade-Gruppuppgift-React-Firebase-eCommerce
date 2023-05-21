@@ -22,62 +22,10 @@ import AddProduct from './pages/AddProducts'
 
 
 const App = () => {
+
+  // Login
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getProducts())
-  }, [])
-
-  const { products, loading, error } = useSelector(state => state.products)
-
-  // ______________________________________________________________________
-
-  // const dispatch = useDispatch()
-  // const { products, error, loading } = useSelector(state => state.products)
-
-
-  // useEffect(() => {
-  //   dispatch(getAllProducts())
-  // }, [])
-
-  
-  // { loading && <p>Loading...</p> }
-  // { error && <p>{error}</p> }
-
-
-  // _____________________________________________________________________
-  
-  // const dispatchProductByID = () => {
-  //   // const { id } = useParams()
-  //   let id = '6457647e222f0c52a46addcc'
-
-  //   const dispatch = useDispatch()
-  
-    
-  //   useEffect(() => {
-  //     dispatch(getProductById(id))
-  
-  //     return () => {
-  //       dispatch(clearProduct())
-  //       product
-  //     }
-  
-  //   }, [])
-
-
-
-    
-  //   const { product, loading, error } = useSelector(state => state.singleProduct)
-    
-  //   if(error) {
-  //     return (
-  //       <div>
-  //         <h2>{error}</h2>
-  //       </div>
-  //     )
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user')
     if(loggedInUser) {
@@ -85,29 +33,20 @@ const App = () => {
       setIsLoggedIn(true)
     }
   }, [])
-
-  // const [url, setUrl] = useState('http://localhost:9999/api/product/')
-  // const { data: products, loading, error } = useFetch(url, { method: 'GET' })
-
-  // const [products, setProducts] = useState([])
-  // const [url, setUrl] = useState('http://localhost:9999/api/product')
-
-  // useEffect(() => {
-
-  //   const getProducts = async () => {
-  //     const res = await axios.get(url)
-  //     console.log(res.data)
-  //     console.log(products)
-  //     setProducts(res.data)
-  //   }
-    
-  // }
-  // dispatchProductByID()
-     // _____________________________________________________________________
+  // ____________________________________________________________________________
   
+  // Sending a dispatch to get the products from FireBase
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getProducts())
+  }, [])
+
+  const { products, loading, error } = useSelector(state => state.products)
+  // ____________________________________________________________________________
 
 
-
+  // Router - sending products to the pages that need them.
   const router = createBrowserRouter([
     {
       path: '/',

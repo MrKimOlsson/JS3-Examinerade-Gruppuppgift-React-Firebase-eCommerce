@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../store/products/productsSlice'
 import Loader from '../components/loader/Loader'
@@ -14,40 +14,9 @@ import NewsletterSub from '../components/home/newsletter/NewsletterSub'
 
 const Home = ({ products }) => {
 
-
-
-
-  // { loading && <Loader />}
-  //     { error && <p>{error}</p>}
-
-  // filter products
-  // Get a list of 8 products
-  // Get 3 separate products for special offers
-  // on click grid button increase the list by 12 more
-
-
-
-  // Find the index of the first match of a product category in the products array
-  //  const category = () => {
-  //   const i = products.findIndex(e => e.category === 'Pants');
-  //   if (i > -1) {
-  //   return console.log(products[i])
-  // }
-  //  }
-  //  category()
-
-  // Find the index of the first match of a product category in the products array
-  // const category = () => {
-  //   const i = products.find(e => e.category === 'Pants');
-  //   if (i > -1) {
-  //   return console.log(products[i])
-  // }
-  //  }
-  //  category()
-
-
-  // let footwear = []
-  // const i = []
+// Desides how many products will be shown in the grid
+let [baseAmount, setBaseAmount] = useState(8);
+let displayProducts = products.slice(0, baseAmount)
 
   return (
     <>
@@ -58,11 +27,18 @@ const Home = ({ products }) => {
       }
       <GridMenu />
       {
-        products.length > 0
-          ? <Grid key={products._id} products={products} />
+        displayProducts.length > 0
+          ? <Grid key={displayProducts._id} displayProducts={displayProducts} />
           : <h2>No products to show</h2>
       }
-      <GridButton />
+      {/* <GridButton /> */}
+
+
+      <div className='grid-button-container'>
+        {/* On click - the amount of the grid will increse by 8 */}
+        <button onClick={() => setBaseAmount(baseAmount + 8)}>LOAD MORE</button>
+      </div>  
+
       <SpecialOffers />
       {
         products.length > 0
@@ -71,7 +47,6 @@ const Home = ({ products }) => {
       }
       <AdminPost />
       <NewsletterSub />
-
     </>
   )
 }

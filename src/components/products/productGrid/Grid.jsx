@@ -9,7 +9,7 @@ import Product from '../../product/Product'
 // import { getAllProducts } from '../../../store/products/productsSlice'
 
 
-const Grid = ({ products }) => {
+const Grid = ({ displayProducts }) => {
   
   return (
 
@@ -17,8 +17,8 @@ const Grid = ({ products }) => {
         <div className='grid-container'>
 
             {
-            products.length > 0
-            ? products.map(product => <Product key={product.id} product={product} />)
+            displayProducts.length > 0
+            ? displayProducts.map(product => <Product key={product.id} product={product} />)
             : <h2>No products to show</h2>
             }
         
