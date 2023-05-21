@@ -51,7 +51,7 @@
 
 .up-edit {
     font-size: 1.5rem;
-    
+    cursor: pointer;
 }
 
 .up-user-detail li {
@@ -61,6 +61,7 @@
 .up-changeP {
     text-decoration: none;
     color: rgb(43, 43, 240);
+    cursor: pointer;
 }
 
 .up-user-detail:last-of-type {
@@ -69,7 +70,7 @@
 
 .up-save {
     display: inline-block;
-    width: min-content;
+    width: max-content;
     height: min-content;
     padding: .5rem 2rem;
     margin-top: 2rem;
@@ -79,6 +80,7 @@
     color: white;
     letter-spacing: .5px;
     margin-bottom: 2rem;
+    cursor: pointer;
 }
 
 .up-options {
@@ -99,3 +101,42 @@
     margin-bottom: 1rem;
 }
 
+.up-edit-input {
+    width: 100%;
+    padding-block: .3rem;
+    padding-left: .3rem;
+    border-radius: .5rem;
+    outline: 0;
+    border: 1px solid black;
+}
+
+.up-edit-input:focus {
+    outline: 0;
+    border-color: rgba(250, 49, 79, 0.814);
+}
+
+.change-pass-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.up-form-control {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.change-pass-form input{
+    width: 100%;
+    padding-block: .3rem;
+    padding-left: .3rem;
+    border-radius: .5rem;
+    outline: 0;
+    border: 1px solid black;
+}
+
+.up-save.password-submit {
+    margin-top: 0rem !important;
+}

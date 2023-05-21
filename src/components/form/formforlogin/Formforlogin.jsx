@@ -23,10 +23,11 @@ const Formforlogin = ({ handleLogin }) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      console.log('Logged in user:', user);
+      console.log(user)
 
       // Dispatch the setUser action to store the user in Redux
       setUser(user);
+      localStorage.setItem('accessToken', user.accessToken)
 
       handleLogin(); // update isLoggedIn state
       navigate('/');

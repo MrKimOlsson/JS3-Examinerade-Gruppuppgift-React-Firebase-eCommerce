@@ -6,13 +6,12 @@ import './navbar.scss'
 import {FaShoppingCart} from 'react-icons/fa'
 import SearchModal from './search/SearchModal'
 
-const Navbar = ({ products, isLoggedIn, setIsLoggedIn }) => {
+const Navbar = ({ products, isLoggedIn, setIsLoggedIn}) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     setIsLoggedIn(false); // set isLoggedIn to false on logout
-    localStorage.removeItem('user')
-    console.log(localStorage.getItem('user')); // should log "null"
+    localStorage.removeItem('accessToken')
     navigate('/login');
   };
 

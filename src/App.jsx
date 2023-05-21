@@ -1,5 +1,5 @@
 import React from 'react'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import { getAllProducts } from './store/products/productsSlice'
@@ -28,19 +28,19 @@ import Sweaters from './pages/categories/Sweaters'
 import Tshirts from './pages/categories/Tshirts'
 
 
-
 const App = () => {
 
   // Login
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem('user')
+    const loggedInUser = localStorage.getItem('accessToken')
     if(loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser)
       setIsLoggedIn(true)
     }
   }, [])
+
+
   // ____________________________________________________________________________
   
   // Sending a dispatch to get the products from FireBase
