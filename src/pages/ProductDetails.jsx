@@ -16,12 +16,8 @@ function ProductDetails({ products }) {
   
   const { id } = useParams()
   let [ _id, set_id] = useState(id);
-  // set_id(id)
 
-  useEffect(() => {
-    // Update the Id
-     set_id(id)
-  });
+
   
   
   const { data: product, error, loading } = useDoc('products', _id)
@@ -54,7 +50,7 @@ function ProductDetails({ products }) {
       <Details key={'detailsProductKey'} product={product} />
       <ProductInfo key={'productInfoProductKey'} product={product} />
       <RelatedProducts key={'RelatedProductsProductKey'} matches={matches} />
-      <SmallProductCarousell key={'SmallProductCarousellProductKey'} product={product} />
+      <SmallProductCarousell key={'SmallProductCarousellProductKey'} products={products} />
     </>
   )
 }
