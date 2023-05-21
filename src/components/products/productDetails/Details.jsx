@@ -2,39 +2,10 @@ import React from 'react'
 import { AiFillStar } from 'react-icons/Ai'
 import './details.scss'
 import { MdOutlineAddShoppingCart } from 'react-icons/Md'
-// import BigImg from '../../../images/501x430.svg'
-// import SmallImg from '../../../images/120x113.svg'
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import Product from '../../product/Product'
-import { clearProduct, getProductById } from '../../../store/products/singleProductSlice'
-
 
 
 const Details = ({ product }) => {
 
-  // const dispatch = useDispatch()
-  // const { id } = useParams()
-
-  // useEffect(() => {
-  //   dispatch(getProductById(id))
-
-  //   return () => {
-  //     dispatch(clearProduct())
-  //   }
-
-  // }, [])
-
-  // const { product, loading, error } = useSelector(state => state.singleProduct)
-
-  // if (error) {
-  //   return (
-  //     <div>
-  //       <h2>{error}</h2>
-  //     </div>
-  //   )
-  // }
 
   return (
     <>

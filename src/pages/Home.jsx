@@ -1,8 +1,4 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getProducts } from '../store/products/productsSlice'
-import Loader from '../components/loader/Loader'
-
+import { useState } from 'react'
 import Hero from '../components/home/hero/Hero'
 import GridMenu from '../components/products/productGrid/gridMenu/GridMenu'
 import Grid from '../components/products/productGrid/Grid'
@@ -20,11 +16,16 @@ let displayProducts = products.slice(0, baseAmount)
 
   return (
     <>
-      {
+     {
         products.length > 0
           ? <Hero key={products._id} products={products} />
           : <h2>No products to show</h2>
       }
+        {/* {
+            products.length > 0
+            ? products.map(product => <Hero key={product.id} product={product} />)
+            : <h2>No products to show</h2>
+            } */}
       <GridMenu />
       {
         displayProducts.length > 0
@@ -32,7 +33,6 @@ let displayProducts = products.slice(0, baseAmount)
           : <h2>No products to show</h2>
       }
       {/* <GridButton /> */}
-
 
       <div className='grid-button-container'>
         {/* On click - the amount of the grid will increse by 8 */}
