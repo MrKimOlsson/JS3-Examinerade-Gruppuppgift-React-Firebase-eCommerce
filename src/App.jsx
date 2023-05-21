@@ -2,9 +2,6 @@ import React from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import { getAllProducts } from './store/products/productsSlice'
-import { clearProduct, getProductById } from './store/products/singleProductSlice'
-import { useParams } from 'react-router-dom'
 import { getProducts } from './store/products/productsSlice'
 import Loader from './components/loader/Loader'
 import RootLayout from './layouts/RootLayout'
@@ -174,7 +171,11 @@ const App = () => {
         },
         {
           path: 'productDetails/:id',
-          element: <ProductDetails />
+          element: <>{ 
+            products.length > 0
+                ? <ProductDetails key={products.id} products={products} />
+                : <h2>No products to show</h2>
+              }</>
         },
 
         {
