@@ -12,7 +12,7 @@ const Hoodies = ({ products }) => {
     // Searching the products array categories to find search word
     const productSerachFunction = () => {
         products.forEach(product => {
-          if(product.category.includes('Hoodie')){
+          if(product.category.includes('Hoodie3')){
             return matches.push(product)
           }
         });
