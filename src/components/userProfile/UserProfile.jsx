@@ -7,8 +7,11 @@ import './userProfile.scss';
 import { db } from '../../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../app/action'
 
 function UserProfile() {
+    const dispatch = useDispatch()
     const [userInfo, setUserInfo] = useState(null);
     const [edit, setEdit] = useState(false)
     const [updateUser, setUpdateUser] = useState()
@@ -30,7 +33,6 @@ function UserProfile() {
                     if (userSnap.exists()) {
                         setUserInfo(userSnap.data());
                     }
-                    console.log(userInfo)
                 }
             } catch (error) {
                 console.error(error);
@@ -40,7 +42,7 @@ function UserProfile() {
         fetchUserData();
     }, []);
 
-    // console.log(userInfo)
+
 
     // console.log(userInfo.streetName)
 
@@ -102,19 +104,19 @@ function UserProfile() {
                     ) : (
                         <>
                             <div className="up-user-detail">
-                                <p>{userInfo.firstName}</p>
+                                <p>{userInfo && userInfo.firstName}</p>
                             </div>
                             <div className="up-user-detail">
-                                <p>{userInfo.streetName}</p>
+                                {/* <p>{userInfo.streetName}</p> */}
                             </div>
                             <div className="up-user-detail">
-                                <p>{userInfo.postalCode}</p>
+                                {/* <p>{userInfo.postalCode}</p> */}
                             </div>
                             <div className="up-user-detail">
-                                <p>{userInfo.city}</p>
+                                {/* <p>{userInfo.city}</p> */}
                             </div>
                             <div className="up-user-detail">
-                                <p>{userInfo.email}</p>
+                                {/* <p>{userInfo.email}</p> */}
                             </div>
                         </>
                     )}

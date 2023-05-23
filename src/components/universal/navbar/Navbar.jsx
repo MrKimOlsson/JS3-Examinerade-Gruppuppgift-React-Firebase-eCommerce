@@ -11,7 +11,7 @@ const Navbar = ({ products, isLoggedIn, setIsLoggedIn}) => {
 
   const handleLogout = () => {
     setIsLoggedIn(false); // set isLoggedIn to false on logout
-    localStorage.removeItem('accessToken')
+    localStorage.clear()
     navigate('/login');
   };
 
