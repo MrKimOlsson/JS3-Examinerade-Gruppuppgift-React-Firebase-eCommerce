@@ -55,7 +55,7 @@ function CartItems() {
                         </select>
                         <p className="ci-details-price">{product.quantity} x {product.price} kr</p>
                         <button onClick={() => handleRemoveFromCart(product)}>
-                            <BsTrash /> Ta bort
+                            <BsTrash /> Remove
                         </button>
                     </div>
                 </div>

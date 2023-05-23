@@ -6,26 +6,29 @@ import Formbtn from './btnlogin/Formbtn';
 import './Formforlogin.scss';
 import { useDispatch } from 'react-redux';
 import { getFirestore, collection, doc, getDoc } from 'firebase/firestore';
+import { setToken } from '../../../app/action';
+
 
 
 const Formforlogin = ({ handleLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   const submitLogin = async (e) => {
     const auth = getAuth();
-    const db = getFirestore(); 
+    const db = getFirestore();
     e.preventDefault();
 
     console.log('Email:', email);
     console.log('Password:', password);
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      const userLogIn = await signInWithEmailAndPassword(auth, email, password);
+      const user = userLogIn.user;
       dispatch(setUser(user));
+      dispatch(setToken(userLogIn.accessToken));
       console.log('Logged in user:', user);
 
       const usersRef = collection(db, 'users');

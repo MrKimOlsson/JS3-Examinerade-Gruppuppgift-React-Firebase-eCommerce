@@ -3,17 +3,21 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import Logo from '../../../images/logo/logo.svg'
 import './navbar.scss'
 // import {FiSearch} from 'react-icons/fi'
-import {FaShoppingCart} from 'react-icons/fa'
+import { FaShoppingCart } from 'react-icons/fa'
 import SearchModal from './search/SearchModal'
+import { clearUser } from '../../../app/action'
+import { useDispatch } from 'react-redux'
 
 const Navbar = ({ products, isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
     setIsLoggedIn(false); // set isLoggedIn to false on logout
-    localStorage.removeItem('user')
+    localStorage.removeItem('userInfo')
     console.log(localStorage.getItem('user')); // should log "null"
     navigate('/login');
+    dispatch(clearUser())
   };
 
   return (
@@ -28,7 +32,7 @@ const Navbar = ({ products, isLoggedIn, setIsLoggedIn }) => {
           <li><NavLink className='nav-link' to='/contact'>Contact</NavLink></li>
           <li><NavLink className='nav-link' to='/addProduct'>Add-Products</NavLink></li>
           {/* <li><FiSearch className='opacity height' /></li> */}
-          <SearchModal key={products._id} products={products}/>
+          <SearchModal key={products._id} products={products} />
           {isLoggedIn ? ( // show the logout button if the user is logged in
             <>
               <li><NavLink className='nav-link lowercase opacity' to='/userprofile'>user</NavLink></li>
