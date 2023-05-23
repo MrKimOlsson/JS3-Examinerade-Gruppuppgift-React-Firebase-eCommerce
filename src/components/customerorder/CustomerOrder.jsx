@@ -1,35 +1,46 @@
-import React from 'react'
-import './CustomerOrder.scss'
+import React, { useEffect, useState } from 'react';
+import { db } from '../../firebase/config';
+import { collection, doc, getDocs } from 'firebase/firestore';
 
 const CustomerOrder = () => {
-  const dispatch = useDispatch()
-  const cartItems = useSelector(state => state.cart.products);
+  const [orders, setOrders] = useState([]);
 
-  const handleRemoveFromCart = (product) => {
-    dispatch(removeFromCart(product))
-  }
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const ordersCollectionRef = collection(db, 'orders');
+        const querySnapshot = await getDocs(ordersCollectionRef);
+        const ordersData = querySnapshot.docs.map((doc) => ({
+          orderId: doc.id,
+          products: doc.data().products,
+          userId: doc.data().userId,
+        }));
+        setOrders(ordersData);
+      } catch (error) {
+        console.log('Error fetching orders:', error);
+      }
+    };
+
+    fetchOrders();
+  }, []);
 
   return (
-    <>
-      {cartItems.map(product => (
-        <div className="cartItem-details" key={product.id}>
-          <div className="ci-details-left">
-            <div className="ci-img-placeholder">
-              <img className='largeProductImg' src={product.imageURL[0]} alt="Product image" srcSet="" />
-            </div>
-            <div className="ci-details">
-              <p className="ci-details-title">{product.title}</p>
-              <p className="ci-details-shortDescription">{product.shortDescription}</p>
-              <p className="ci-details-shipping">
-                <FaShippingFast /> Faster shipping
-              </p>
-            </div>
-          </div>
-
-        </div>
-      ))}
-    </>
+    <div>
+      <h1>Customer Orders</h1>
+      <ul>
+        {orders.map((order) => (
+          <li key={order.orderId}>
+            Order ID: {order.orderId}<br />
+            User ID: {order.userId}<br />
+            Products: {JSON.stringify(order.products)}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
-}
+};
 
-export default CustomerOrder
+export default CustomerOrder;
+
+
+
