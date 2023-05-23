@@ -6,11 +6,14 @@ import './navbar.scss'
 import { FaShoppingCart } from 'react-icons/fa'
 import SearchModal from './search/SearchModal'
 import { clearUser } from '../../../app/action'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+
 
 const Navbar = ({ products, isLoggedIn, setIsLoggedIn}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+
 
   const handleLogout = () => {
     setIsLoggedIn(false); // set isLoggedIn to false on logout
@@ -42,7 +45,10 @@ const Navbar = ({ products, isLoggedIn, setIsLoggedIn}) => {
               <li><NavLink className='nav-link lowercase opacity' to='/login'>Login</NavLink></li>
             </>
           )}
-          <li><NavLink className='nav-link ' to='/cart'><FaShoppingCart className='cart' /></NavLink></li>
+          <div className='cartss'>
+            <li><NavLink className='nav-link ' to='/cart'><FaShoppingCart className='cart' /></NavLink></li>
+            <p>{totalQuantity}</p>
+          </div>
         </ul>
       </nav>
     </>
