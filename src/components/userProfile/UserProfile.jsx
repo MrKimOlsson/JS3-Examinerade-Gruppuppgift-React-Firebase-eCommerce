@@ -84,7 +84,7 @@ function UserProfile() {
                         <NavLink className='up-options-link'>My Errands</NavLink>
                     </div>
                     <div className='up-options-bottom'>
-                        <NavLink className='up-options-link'>Show Order History</NavLink>
+                        <NavLink className='up-options-link' to='/userorders'>Show Order History</NavLink>
                         <NavLink className='up-options-link'>Delete Account</NavLink>
                     </div>
                 </div>

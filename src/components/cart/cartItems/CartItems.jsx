@@ -2,8 +2,7 @@ import React from 'react'
 import './cartItems.scss'
 import { BsTrash } from 'react-icons/bs'
 import { FaShippingFast } from 'react-icons/fa'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { removeFromCart } from '../../../app/cartSlice'
 
 function CartItems() {
@@ -13,6 +12,7 @@ function CartItems() {
     const handleRemoveFromCart = (product) => {
         dispatch(removeFromCart(product))
     }
+
     return (
         <>
             {cartItems.map(product => (
@@ -43,8 +43,8 @@ function CartItems() {
                             <option value="10">10</option>
                         </select>
                         <p className="ci-details-price">{product.price} kr</p>
-                        <button>
-                            <BsTrash onClick={() => handleRemoveFromCart(product)} /> Ta bort
+                        <button onClick={() => handleRemoveFromCart(product)}>
+                            <BsTrash /> Ta bort
                         </button>
                     </div>
                 </div>
@@ -53,5 +53,4 @@ function CartItems() {
     );
 }
 
-
-export default CartItems
+export default CartItems;

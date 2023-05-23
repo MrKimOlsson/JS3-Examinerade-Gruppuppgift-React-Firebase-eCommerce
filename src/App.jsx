@@ -26,6 +26,7 @@ import Hoodies from './pages/categories/Hoodies'
 import Pants from './pages/categories/Pants'
 import Sweaters from './pages/categories/Sweaters'
 import Tshirts from './pages/categories/Tshirts'
+import UserOrders from './pages/UserOrders'
 
 
 
@@ -36,13 +37,13 @@ const App = () => {
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user')
-    if(loggedInUser) {
+    if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser)
       setIsLoggedIn(true)
     }
   }, [])
   // ____________________________________________________________________________
-  
+
   // Sending a dispatch to get the products from FireBase
   const dispatch = useDispatch()
 
@@ -63,12 +64,12 @@ const App = () => {
       children: [
         {
           index: true,
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Home key={products._id} products={products}/>
-                : <h2>No products to show</h2>
-              }</>
-          
+              ? <Home key={products._id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
+
         },
         {
           index: true,
@@ -76,11 +77,11 @@ const App = () => {
         },
         {
           path: 'products',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Products key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Products key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'addProduct',
@@ -99,6 +100,10 @@ const App = () => {
           element: <UserProfile />
         },
         {
+          path: 'userorders',
+          element: <UserOrders />
+        },
+        {
           path: 'register',
           element: <Register />
         },
@@ -108,69 +113,69 @@ const App = () => {
         },
         {
           path: 'products',
-          element:<Products/>
-            
+          element: <Products />
+
         },
         {
           path: 'products/coats',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Coats key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Coats key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'products/footwear',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Footwear key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Footwear key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'products/hats',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Hats key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Hats key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'products/hoodies',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Hoodies key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Hoodies key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'products/pants',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Pants key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Pants key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'products/sweaters',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Sweaters key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Sweaters key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'products/t-shirts',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Tshirts key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Tshirts key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'productSearch',
-          element:<ProductSearch/>
-            
+          element: <ProductSearch />
+
         },
         {
           path: 'productDetails/:id',
