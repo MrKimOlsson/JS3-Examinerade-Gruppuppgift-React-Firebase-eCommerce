@@ -43,8 +43,8 @@ const Formforregister = () => {
         return;
       }
 
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      await createUserWithEmailAndPassword(auth, email, password);
+      const user = auth.currentUser;
       const collectionRef = collection(db, 'users');
 
       const userData = {
@@ -77,6 +77,7 @@ const Formforregister = () => {
       console.error(error);
     }
   };
+
 
   return (
     <div className='form-register-wrapper'>

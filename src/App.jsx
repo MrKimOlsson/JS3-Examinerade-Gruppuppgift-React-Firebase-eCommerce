@@ -2,9 +2,6 @@ import React from 'react'
 import { RouterProvider, createBrowserRouter, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import { getAllProducts } from './store/products/productsSlice'
-import { clearProduct, getProductById } from './store/products/singleProductSlice'
-import { useParams } from 'react-router-dom'
 import { getProducts } from './store/products/productsSlice'
 import Loader from './components/loader/Loader'
 import RootLayout from './layouts/RootLayout'
@@ -26,6 +23,7 @@ import Hoodies from './pages/categories/Hoodies'
 import Pants from './pages/categories/Pants'
 import Sweaters from './pages/categories/Sweaters'
 import Tshirts from './pages/categories/Tshirts'
+import UserOrders from './pages/UserOrders'
 
 
 const App = () => {
@@ -42,7 +40,7 @@ const App = () => {
 
 
   // ____________________________________________________________________________
-  
+
   // Sending a dispatch to get the products from FireBase
   const dispatch = useDispatch()
 
@@ -63,12 +61,12 @@ const App = () => {
       children: [
         {
           index: true,
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Home key={products._id} products={products}/>
-                : <h2>No products to show</h2>
-              }</>
-          
+              ? <Home key={products._id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
+
         },
         {
           index: true,
@@ -76,11 +74,11 @@ const App = () => {
         },
         {
           path: 'products',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Products key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Products key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'addProduct',
@@ -99,6 +97,10 @@ const App = () => {
           element: <UserProfile />
         },
         {
+          path: 'userorders',
+          element: <UserOrders />
+        },
+        {
           path: 'register',
           element: <Register />
         },
@@ -108,73 +110,77 @@ const App = () => {
         },
         {
           path: 'products',
-          element:<Products/>
-            
+          element: <Products />
+
         },
         {
           path: 'products/coats',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Coats key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Coats key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'products/footwear',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Footwear key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Footwear key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'products/hats',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Hats key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Hats key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'products/hoodies',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Hoodies key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Hoodies key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'products/pants',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Pants key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Pants key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'products/sweaters',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Sweaters key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Sweaters key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'products/t-shirts',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <Tshirts key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <Tshirts key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
         {
           path: 'productSearch',
-          element:<ProductSearch/>
-            
+          element: <ProductSearch />
+
         },
         {
           path: 'productDetails/:id',
-          element: <ProductDetails />
+          element: <>{ 
+            products.length > 0
+                ? <ProductDetails key={products.id} products={products} />
+                : <h2>No products to show</h2>
+              }</>
         },
 
         {
