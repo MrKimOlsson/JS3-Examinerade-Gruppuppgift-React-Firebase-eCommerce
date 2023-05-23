@@ -62,7 +62,7 @@ const Formforregister = () => {
       console.log('New user ID:', docRef.id);
       console.log('Registered user:', user);
 
-      // Reset form fields after successful submission
+      // reset
       setFirstName('');
       setLastName('');
       setStreetName('');
