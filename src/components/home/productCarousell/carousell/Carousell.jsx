@@ -12,7 +12,7 @@ const Carousell = forwardRef(({products}, ref) => {
           <div className='carousellTitle'>
             <p>{product.title}</p>
           </div>
-        <p>{product.price}</p>
+        {/* <p>{product.price}</p> */}
       </div>
     </div>
 ))}
