@@ -30,6 +30,7 @@ const Formforlogin = ({ handleLogin }) => {
       dispatch(setUser(user));
       dispatch(setToken(userLogIn.accessToken));
       console.log('Logged in user:', user);
+      console.log(user.accessToken)
 
       const usersRef = collection(db, 'users');
       const userDocRef = doc(usersRef, user.uid);
