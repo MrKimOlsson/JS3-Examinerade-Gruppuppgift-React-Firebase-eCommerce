@@ -13,7 +13,8 @@ function TotalSum({ cartItems }) {
             return 0;
         }
 
-        const totalPrice = cartItems.reduce((total, product) => total + product.price, 0);
+        const totalPrice = cartItems.reduce(
+            (total, product) => total + product.price * product.quantity, 0);
         return totalPrice.toFixed(2);
     };
 
@@ -69,4 +70,5 @@ function TotalSum({ cartItems }) {
 }
 
 export default TotalSum;
+
 
