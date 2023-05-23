@@ -6,9 +6,19 @@ import './userProfile.scss';
 import { db } from '../../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../app/action'
 
 
 function UserProfile() {
+    const dispatch = useDispatch()
+    const [edit, setEdit] = useState(false)
+    const [updateUser, setUpdateUser] = useState()
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setUpdateUser((prevState) => ({ ...prevState, [name]: value }));
+    };
     const [userInfo, setUserInfo] = useState([]);
 
     useEffect(() => {
@@ -19,10 +29,11 @@ function UserProfile() {
                 if (user) {
                     const userRef = doc(db, 'users', user.uid);
                     const userSnap = await getDoc(userRef);
+                    
                     if (userSnap.exists()) {
                         const userData = userSnap.data();
-                        setUserInfo(userData);
-                        localStorage.setItem('userInfo', JSON.stringify(userData));
+                        console.log(userData)
+                        // setUserInfo(localStorage.getItem(userData))
                     }
                 }
             } catch (error) {
@@ -34,53 +45,95 @@ function UserProfile() {
     }, []);
 
 
+    const string = localStorage.getItem('user')
+    const loggedUser = JSON.parse(string)
+    console.log(loggedUser)
+
+
+    // console.log(userInfo.streetName)
+
     return (
         <div className='up-container'>
             <div className='up-inner-container'>
                 <div className='up-icon-container'>
                     <BiUserCircle className='up-user-icon' />
                 </div>
-                <div className='up-user-info'>
-                    {userInfo && (
+                <div className="up-user-info">
+                    {edit ? (
                         <>
-                            <div className='up-user-detail'>
-                                <p>{userInfo.firstName}</p>
-                                <div>
-                                    <CiEdit className='up-edit' />
-                                </div>
+                            <div className="up-user-detail">
+                                <input
+                                    name="firstName"
+                                    value={userInfo && userInfo.firstName}
+                                    type="text"
+                                    className="up-edit-input"
+                                    onChange={handleChange}
+                                />
                             </div>
-                            <div className='up-user-detail'>
-                                <p>{userInfo.streetName}</p>
-                                <div>
-                                    <CiEdit className='up-edit' />
-                                </div>
+                            <div className="up-user-detail">
+                                <input
+                                    name="streetName"
+                                    value={userInfo.streetName}
+                                    type="text"
+                                    className="up-edit-input"
+                                    onChange={handleChange}
+                                />
                             </div>
-                            <div className='up-user-detail'>
-                                <p>{userInfo.postalCode}</p>
-                                <div>
-                                    <CiEdit className='up-edit' />
-                                </div>
+                            <div className="up-user-detail">
+                                <input
+                                    name="postalCode"
+                                    value={userInfo.postalCode}
+                                    type="text"
+                                    className="up-edit-input"
+                                    onChange={handleChange}
+                                />
                             </div>
-                            <div className='up-user-detail'>
-                                <p>{userInfo.city}</p>
-                                <div>
-                                    <CiEdit className='up-edit' />
-                                </div>
+                            <div className="up-user-detail">
+                                <input
+                                    name="city"
+                                    value={userInfo.city}
+                                    type="text"
+                                    className="up-edit-input"
+                                    onChange={handleChange}
+                                />
                             </div>
-                            <div className='up-user-detail'>
-                                <p>{userInfo.email}</p>
-                                <div>
-                                    <CiEdit className='up-edit' />
-                                </div>
+                            <div className="up-user-detail">
+                                <input
+                                    name="email"
+                                    value={userInfo.email}
+                                    type="text"
+                                    className="up-edit-input"
+                                    onChange={handleChange}
+                                />
                             </div>
-                            <div className='up-user-detail'>
-                                <p>p********</p>
-                                <li>
-                                    <NavLink className='up-changeP'>Change password?</NavLink>
-                                </li>
-                            </div>
-                            <button className='up-save'>Save</button>
                         </>
+                    ) : (
+                        <>
+                            <div className="up-user-detail">
+                                <p>{loggedUser && loggedUser.firstName + ' ' + loggedUser.lastName}</p>
+                            </div>
+                            <div className="up-user-detail">
+                                <p>{loggedUser && loggedUser.streetName}</p>
+                            </div>
+                            <div className="up-user-detail">
+                                <p>{loggedUser && loggedUser.postalCode}</p>
+                            </div>
+                            <div className="up-user-detail">
+                                <p>{loggedUser && loggedUser.city}</p>
+                            </div>
+                            <div className="up-user-detail">
+                                <p>{loggedUser && loggedUser.email}</p>
+                            </div>
+                        </>
+                    )}
+                    {edit ? (
+                        <button className="up-save">
+                            Save
+                        </button>
+                    ) : (
+                        <button onClick={() => setEdit(true)} className="up-save">
+                            Edit
+                        </button>
                     )}
                 </div>
                 <div className='up-options'>

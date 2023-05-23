@@ -29,8 +29,8 @@ const Formforlogin = ({ handleLogin }) => {
       const user = userLogIn.user;
       dispatch(setUser(user));
       dispatch(setToken(userLogIn.accessToken));
-      console.log('Logged in user:', user);
-      console.log(user.accessToken)
+      localStorage.setItem('accessToken', user.accessToken)
+      console.log('UserLogIn:::::', user.accessToken)
 
       const usersRef = collection(db, 'users');
       const userDocRef = doc(usersRef, user.uid);
@@ -39,6 +39,7 @@ const Formforlogin = ({ handleLogin }) => {
       if (userDocSnapshot.exists()) {
         const userData = userDocSnapshot.data();
         console.log('User data:', userData);
+        localStorage.setItem('user', JSON.stringify(userData))
 
       } else {
         console.log('User does not exist');
