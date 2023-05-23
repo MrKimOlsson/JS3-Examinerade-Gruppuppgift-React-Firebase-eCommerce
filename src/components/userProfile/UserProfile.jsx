@@ -32,8 +32,8 @@ function UserProfile() {
                     
                     if (userSnap.exists()) {
                         const userData = userSnap.data();
-                        setUserInfo(userData);
-                        localStorage.setItem('userInfo', JSON.stringify(userData));
+                        console.log(userData)
+                        // setUserInfo(localStorage.getItem(userData))
                     }
                 }
             } catch (error) {
@@ -44,6 +44,10 @@ function UserProfile() {
         fetchUserData();
     }, []);
 
+
+    const string = localStorage.getItem('user')
+    const loggedUser = JSON.parse(string)
+    console.log(loggedUser)
 
 
     // console.log(userInfo.streetName)
@@ -106,19 +110,19 @@ function UserProfile() {
                     ) : (
                         <>
                             <div className="up-user-detail">
-                                <p>{userInfo && userInfo.firstName}</p>
+                                <p>{loggedUser && loggedUser.firstName + ' ' + loggedUser.lastName}</p>
                             </div>
                             <div className="up-user-detail">
-                                {/* <p>{userInfo.streetName}</p> */}
+                                <p>{loggedUser && loggedUser.streetName}</p>
                             </div>
                             <div className="up-user-detail">
-                                {/* <p>{userInfo.postalCode}</p> */}
+                                <p>{loggedUser && loggedUser.postalCode}</p>
                             </div>
                             <div className="up-user-detail">
-                                {/* <p>{userInfo.city}</p> */}
+                                <p>{loggedUser && loggedUser.city}</p>
                             </div>
                             <div className="up-user-detail">
-                                {/* <p>{userInfo.email}</p> */}
+                                <p>{loggedUser && loggedUser.email}</p>
                             </div>
                         </>
                     )}

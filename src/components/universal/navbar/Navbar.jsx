@@ -14,12 +14,7 @@ const Navbar = ({ products, isLoggedIn, setIsLoggedIn}) => {
 
   const handleLogout = () => {
     setIsLoggedIn(false); // set isLoggedIn to false on logout
-<<<<<<< HEAD
     localStorage.clear()
-=======
-    localStorage.removeItem('userInfo')
-    console.log(localStorage.getItem('user')); // should log "null"
->>>>>>> 1017fca337d7c9e17345175f1bbac45da52e67d8
     navigate('/login');
     dispatch(clearUser())
   };
