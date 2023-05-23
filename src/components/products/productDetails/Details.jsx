@@ -1,17 +1,21 @@
-import React from 'react'
-import { AiFillStar } from 'react-icons/Ai'
-import './details.scss'
-import { MdOutlineAddShoppingCart } from 'react-icons/Md'
-import { addToCart } from '../../../app/cartSlice'
+import React, { useState } from 'react';
+import { AiFillStar } from 'react-icons/Ai';
+import './details.scss';
+import { MdOutlineAddShoppingCart } from 'react-icons/Md';
+import { addToCart } from '../../../app/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { handleDecrement, handleIncrement } from '../../../helpers/addDetailsHelp';
 
 const Details = ({ product }) => {
   const dispatch = useDispatch();
+  const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
-    dispatch(addToCart(product)); 
+    if (product) {
+      dispatch(addToCart({ ...product, quantity: quantity }));
+    }
   };
+
 
   return (
     <>
@@ -19,9 +23,7 @@ const Details = ({ product }) => {
       {product && */}
 
       <div className='details-wrapper'>
-
         <div className='details-container'>
-
           <div className='img-wrapper'>
             <div className='largeProductImgContainer'>
               <img className='largeProductImg' src={product.imageURL[0]} alt="Product image" srcSet="" />
@@ -53,9 +55,9 @@ const Details = ({ product }) => {
             {console.log(product)}
             <div className='addToCart'>
               <div className='productDetailsButtonWrapper'>
-                <button>-</button>
-                <div className='productDetailsProductAmount'><p>2</p></div>
-                <button>+</button>
+                <button onClick={() => handleDecrement(quantity, setQuantity)}>-</button>
+                <div className='productDetailsProductAmount'><p>{quantity}</p></div>
+                <button onClick={() => handleIncrement(quantity, setQuantity)}>+</button>
               </div>
               <button className='addToCartBtn' onClick={handleAddToCart}>Add to Cart <span className='addToCartBtnIcon'><MdOutlineAddShoppingCart /></span></button>
             </div>
@@ -74,11 +76,10 @@ const Details = ({ product }) => {
             <button className='wishlistBtn'>Add to wishlist</button>
             <p className='productDetailsCategory'>Category: {product.category}</p>
           </div>
-
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Details
+export default Details;

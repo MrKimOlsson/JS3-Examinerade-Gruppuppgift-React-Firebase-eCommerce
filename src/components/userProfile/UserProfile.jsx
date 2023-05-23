@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { BiUserCircle } from 'react-icons/bi';
 import { NavLink } from 'react-router-dom';
@@ -8,8 +7,9 @@ import { db } from '../../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
+
 function UserProfile() {
-    const [userInfo, setUserInfo] = useState(null);
+    const [userInfo, setUserInfo] = useState([]);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -20,7 +20,9 @@ function UserProfile() {
                     const userRef = doc(db, 'users', user.uid);
                     const userSnap = await getDoc(userRef);
                     if (userSnap.exists()) {
-                        setUserInfo(userSnap.data());
+                        const userData = userSnap.data();
+                        setUserInfo(userData);
+                        localStorage.setItem('userInfo', JSON.stringify(userData));
                     }
                 }
             } catch (error) {
@@ -30,6 +32,8 @@ function UserProfile() {
 
         fetchUserData();
     }, []);
+
+
     return (
         <div className='up-container'>
             <div className='up-inner-container'>
@@ -84,7 +88,7 @@ function UserProfile() {
                         <NavLink className='up-options-link'>My Errands</NavLink>
                     </div>
                     <div className='up-options-bottom'>
-                        <NavLink className='up-options-link'>Show Order History</NavLink>
+                        <NavLink className='up-options-link' to='/userorders'>Show Order History</NavLink>
                         <NavLink className='up-options-link'>Delete Account</NavLink>
                     </div>
                 </div>

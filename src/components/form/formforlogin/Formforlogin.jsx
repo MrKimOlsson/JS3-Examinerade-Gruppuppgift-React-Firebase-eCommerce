@@ -1,34 +1,49 @@
 import React, { useState } from 'react';
 import { Form, Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { connect } from 'react-redux';
-import { setUser } from '../../../app/action'
+import { setUser } from '../../../app/action';
 import Formbtn from './btnlogin/Formbtn';
 import './Formforlogin.scss';
+import { useDispatch } from 'react-redux';
+import { getFirestore, collection, doc, getDoc } from 'firebase/firestore';
+import { setToken } from '../../../app/action';
+
 
 
 const Formforlogin = ({ handleLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
 
   const submitLogin = async (e) => {
     const auth = getAuth();
+    const db = getFirestore();
     e.preventDefault();
 
     console.log('Email:', email);
     console.log('Password:', password);
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      const userLogIn = await signInWithEmailAndPassword(auth, email, password);
+      const user = userLogIn.user;
+      dispatch(setUser(user));
+      dispatch(setToken(userLogIn.accessToken));
       console.log('Logged in user:', user);
 
-      // Dispatch the setUser action to store the user in Redux
-      setUser(user);
+      const usersRef = collection(db, 'users');
+      const userDocRef = doc(usersRef, user.uid);
+      const userDocSnapshot = await getDoc(userDocRef);
 
-      handleLogin(); // update isLoggedIn state
+      if (userDocSnapshot.exists()) {
+        const userData = userDocSnapshot.data();
+        console.log('User data:', userData);
+
+      } else {
+        console.log('User does not exist');
+      }
+
+      handleLogin();
       navigate('/');
     } catch (error) {
       console.log('Login error:', error);
