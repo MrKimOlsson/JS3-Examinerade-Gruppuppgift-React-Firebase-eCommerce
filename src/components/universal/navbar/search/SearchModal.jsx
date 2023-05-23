@@ -22,11 +22,10 @@ const SearchModal = ({ products }) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-
-    // setModalValue(search);
+    setIsFormVisible(false);
+    if (search.trim() === '') return
     setModalVisible(true);
     setSearch('');
-    setIsFormVisible(false);
 
     // Product catergory search function
 
@@ -35,11 +34,8 @@ const SearchModal = ({ products }) => {
 
     products.forEach(product => {
       if (product.category.includes(search)) {
-        // console.log('You got a match')
         let matches = product
-        // console.log(matches)
       }
-      // console.log('No match')
     });
 
     // reset form
@@ -85,15 +81,15 @@ const SearchModal = ({ products }) => {
             <div className="modal-content">
               <p>{modalValue}</p>
               {matchingProducts.map(products => (
-              <Link onClick={() => setModalVisible(false)} key={products.id} to={`/productDetails/${products.id}`}>
-                <div key={products.id} className="modalcontainer">
-                  <img className='modalimg' src={products.imageURL} alt="" />
-                  <div className="product-details">
-                    <h3 className='modalproducttitel'>{products.title}</h3>
-                    <p>{products.shortDescription}</p>
+                <Link onClick={() => setModalVisible(false)} key={products.id} to={`/productDetails/${products.id}`}>
+                  <div key={products.id} className="modalcontainer">
+                    <img className='modalimg' src={products.imageURL} alt="" />
+                    <div className="product-details">
+                      <h3 className='modalproducttitel'>{products.title}</h3>
+                      <p>{products.shortDescription}</p>
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
               ))}
             </div>
           </div>
