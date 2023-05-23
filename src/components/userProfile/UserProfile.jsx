@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { BiUserCircle } from 'react-icons/bi';
 import { NavLink } from 'react-router-dom';
@@ -10,9 +9,9 @@ import { getAuth } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../app/action'
 
+
 function UserProfile() {
     const dispatch = useDispatch()
-    const [userInfo, setUserInfo] = useState(null);
     const [edit, setEdit] = useState(false)
     const [updateUser, setUpdateUser] = useState()
 
@@ -20,6 +19,7 @@ function UserProfile() {
         const { name, value } = event.target;
         setUpdateUser((prevState) => ({ ...prevState, [name]: value }));
     };
+    const [userInfo, setUserInfo] = useState([]);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -31,7 +31,9 @@ function UserProfile() {
                     const userSnap = await getDoc(userRef);
                     
                     if (userSnap.exists()) {
-                        setUserInfo(userSnap.data());
+                        const userData = userSnap.data();
+                        setUserInfo(userData);
+                        localStorage.setItem('userInfo', JSON.stringify(userData));
                     }
                 }
             } catch (error) {

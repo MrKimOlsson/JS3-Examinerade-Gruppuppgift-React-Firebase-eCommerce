@@ -176,11 +176,11 @@ const App = () => {
         },
         {
           path: 'productDetails/:id',
-          element: <>{ 
+          element: <>{
             products.length > 0
-                ? <ProductDetails key={products.id} products={products} />
-                : <h2>No products to show</h2>
-              }</>
+              ? <ProductDetails key={products.id} products={products} />
+              : <h2>No products to show</h2>
+          }</>
         },
 
         {
