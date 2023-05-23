@@ -26,6 +26,11 @@
     justify-content: center;
     align-items: center;
 }
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: transparent;
+}
 .modal {
     box-shadow: 1px 1px 4px #000055;;
     padding: 0.5rem;

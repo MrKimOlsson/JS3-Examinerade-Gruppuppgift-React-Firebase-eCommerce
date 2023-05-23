@@ -28,7 +28,7 @@ const useDoc = (collection, id) => {
 
     getDocAsync()
 
-  }, [])
+  }, [id])
 
   return { data, error, loading }
 }
