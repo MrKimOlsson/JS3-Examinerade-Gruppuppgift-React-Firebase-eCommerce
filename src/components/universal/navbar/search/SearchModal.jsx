@@ -35,7 +35,7 @@ const SearchModal = ({ products }) => {
 
     products.forEach(product => {
       if (product.category.includes(search)) {
-        console.log('You got a match')
+        // console.log('You got a match')
         let matches = product
         // console.log(matches)
       }
@@ -46,7 +46,7 @@ const SearchModal = ({ products }) => {
     setSearch('');
     setIsFormVisible(false);
   };
-  
+
   // hidden btn / form 
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
@@ -78,23 +78,26 @@ const SearchModal = ({ products }) => {
         )}
       </li>
       {modalVisible && (
-        <div className="modal">
-          <span className="close" onClick={hideModal}>&times;</span>
-          <div className="modal-content">
-            <p>{modalValue}</p>
-            {matchingProducts.map(products => (
-            <Link key={products.id} to={`/productDetails/${products.id}`}>
-              <div key={products.id} className="modalcontainer">
-                <img className='modalimg' src={products.imageURL} alt="" />
-                <div className="product-details">
-                  <h3 className='modalproducttitel'>{products.title}</h3>
-                  <p>{products.shortDescription}</p>
+        <>
+          <div className="modal-overlay" onClick={() => setModalVisible(false)}></div>
+          <div className="modal">
+            <span className="close" onClick={hideModal}>&times;</span>
+            <div className="modal-content">
+              <p>{modalValue}</p>
+              {matchingProducts.map(products => (
+              <Link onClick={() => setModalVisible(false)} key={products.id} to={`/productDetails/${products.id}`}>
+                <div key={products.id} className="modalcontainer">
+                  <img className='modalimg' src={products.imageURL} alt="" />
+                  <div className="product-details">
+                    <h3 className='modalproducttitel'>{products.title}</h3>
+                    <p>{products.shortDescription}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-            ))}
+              </Link>
+              ))}
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

@@ -15,9 +15,9 @@ function ProductDetails({ products }) {
   // console.log(id)
   
   const { id } = useParams()
-  let [ _id, set_id] = useState(id);
+  // let [ _id, set_id] = useState(id);
 
-  const { data: product, error, loading } = useDoc('products', _id)
+  const { data: product, error, loading } = useDoc('products', id)
   if (!product) return (
     <div>
       {loading && <Loader />}
