@@ -9,7 +9,7 @@ import { clearUser } from '../../../app/action'
 import { useDispatch, useSelector } from 'react-redux'
 
 
-const Navbar = ({ products, isLoggedIn, setIsLoggedIn }) => {
+const Navbar = ({ products, isLoggedIn, setIsLoggedIn}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
@@ -17,8 +17,7 @@ const Navbar = ({ products, isLoggedIn, setIsLoggedIn }) => {
 
   const handleLogout = () => {
     setIsLoggedIn(false); // set isLoggedIn to false on logout
-    localStorage.removeItem('userInfo')
-    console.log(localStorage.getItem('user')); // should log "null"
+    localStorage.clear()
     navigate('/login');
     dispatch(clearUser())
   };
