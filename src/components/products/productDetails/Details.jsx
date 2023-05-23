@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AiFillStar } from 'react-icons/Ai';
 import './details.scss';
 import { MdOutlineAddShoppingCart } from 'react-icons/Md';
-import { addToCart } from '../../../app/cartSlice';
+import { addToCart, updateQuantity } from '../../../app/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleDecrement, handleIncrement } from '../../../helpers/addDetailsHelp';
 
@@ -10,10 +10,9 @@ const Details = ({ product }) => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
 
-
   const handleAddToCart = () => {
     if (product) {
-      dispatch(addToCart({ ...product, quantity }));
+      dispatch(addToCart({ ...product, quantity: quantity }));
     }
   };
 
