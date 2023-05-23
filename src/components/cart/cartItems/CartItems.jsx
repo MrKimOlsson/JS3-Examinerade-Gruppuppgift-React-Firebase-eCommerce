@@ -13,6 +13,7 @@ function CartItems() {
         dispatch(removeFromCart(product));
     };
 
+
     const handleQuantityChange = (e, product) => {
         const quantity = parseInt(e.target.value, 10);
         dispatch(updateQuantity({ productId: product.id, quantity }));
