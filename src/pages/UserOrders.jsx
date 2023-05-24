@@ -1,11 +1,13 @@
 import React from 'react'
 import CustomerOrder from '../components/customerorder/CustomerOrder'
+import { useSelector } from 'react-redux';
 
 
 const UserOrders = () => {
+  const user = useSelector(state => state.auth.user);
   return (
     <div>
-      <CustomerOrder />
+      <CustomerOrder user={user} />
     </div>
   )
 }

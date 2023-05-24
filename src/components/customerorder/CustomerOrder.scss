@@ -1,94 +1,64 @@
-.cart-wrapper {
-  background-color: rgb(237, 236, 236);
-  width: 75%;
-  margin: auto;
-  padding: 1.5rem;
+.order-box {
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
   display: flex;
-  margin-bottom: 1.5rem;
-
-}
-
-.cartItem-wrapper {
-  background-color: white;
-  flex: 2;
-}
-
-.cartItem-wrapper h2,
-.cartItem-wrapper .ci-p {
-  padding-inline: 1.5rem;
-}
-
-.cartItem-wrapper h2 {
-  padding-top: 1rem;
-  font-size: 1.5rem;
-}
-
-.cartItem-details {
-  display: flex;
-  justify-content: space-between;
-  padding: 1.5rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.123);
-}
-
-.cartItem-details:nth-of-type(1) {
-  border: none;
-}
-
-.ci-details-left {
-  display: flex;
-  gap: 1rem;
-}
-
-.ci-img-placeholder {
-  width: 6rem;
-  height: 9rem;
-  background-color: grey;
-}
-
-.ci-details {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.ci-details-shortDescription,
-.ci-details-color,
-.ci-details-size {
-  opacity: .5;
-}
-
-.ci-dropdown {
-  width: 5rem;
-  height: 1.8rem;
-  padding-inline: .4rem;
-}
-
-.ci-dropdown:focus {
-  outline: 1.5px solid black;
-  border: none;
-}
-
-.ci-details-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-between;
-}
-
-.ci-details-right button {
-  display: inline-block;
-  width: max-content;
-  height: min-content;
-  display: flex;
-  gap: 1rem;
   align-items: center;
-  background-color: transparent;
-  border: 0;
-  outline: 0;
-  cursor: pointer;
-  opacity: .7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  justify-content: center;
 }
 
-.ci-details-right p {
-  color: rgb(250, 49, 80);
+.container-order {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.order-details {
+  flex: 1;
+  margin-left: 16px;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.image-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-details {
+  margin-left: 16px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+p {
+  margin: 0;
+  color: black;
+}
+
+.product p {
+  margin-bottom: 4px;
 }
