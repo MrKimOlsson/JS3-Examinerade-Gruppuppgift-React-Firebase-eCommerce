@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { getFirestore } from 'firebase/firestore';
 import { collection, addDoc } from 'firebase/firestore';
 
-
 import './totalSum.scss';
 
 function TotalSum({ cartItems }) {
@@ -22,6 +21,11 @@ function TotalSum({ cartItems }) {
     };
 
     const handleCheckout = async () => {
+        if (!cartItems || cartItems.length === 0) {
+            console.log('Cannot place an order with an empty cart.');
+            return;
+        }
+
         const db = getFirestore();
         const ordersRef = collection(db, 'orders');
         console.log('cartItems:', cartItems);
@@ -32,15 +36,25 @@ function TotalSum({ cartItems }) {
         }
 
         try {
-            const orders = cartItems.map(product => ({
+            const orders = cartItems.map((product) => ({
                 productId: product.id,
                 title: product.title,
                 description: product.description,
                 image: product.imageURL[0],
-                price: product.price
+                price: product.price,
+                quantity: product.quantity
             }));
 
-            await addDoc(ordersRef, { userId: user.id, products: orders });
+            const totalPrice = calculateTotalPrice();
+
+            const orderData = {
+                userId: user.id,
+                products: orders,
+                totalPrice: totalPrice,
+                status: 'Order placed' 
+            };
+
+            await addDoc(ordersRef, orderData);
             console.log('Checkout successful');
             setOrderPlaced(true);
         } catch (error) {
@@ -66,7 +80,7 @@ function TotalSum({ cartItems }) {
                         <p>Total price (incl. moms)</p>
                         <p className="bold">{calculateTotalPrice()} kr</p>
                     </div>
-                    {orderPlaced ? ( 
+                    {orderPlaced ? (
                         <div className="order-placed-message">
                             <p>Order placed!</p>
                         </div>
@@ -80,5 +94,6 @@ function TotalSum({ cartItems }) {
 }
 
 export default TotalSum;
+
 
 
