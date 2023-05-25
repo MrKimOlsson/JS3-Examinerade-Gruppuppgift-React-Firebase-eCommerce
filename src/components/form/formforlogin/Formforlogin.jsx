@@ -29,8 +29,9 @@ const Formforlogin = ({ handleLogin }) => {
       const user = userLogIn.user;
       dispatch(setUser(user));
       dispatch(setToken(userLogIn.accessToken));
+      localStorage.setItem('uid', user.uid)
       localStorage.setItem('accessToken', user.accessToken)
-      console.log('UserLogIn:::::', user.accessToken)
+      // console.log('UserLogIn:::::', user.accessToken)
 
       const usersRef = collection(db, 'users');
       const userDocRef = doc(usersRef, user.uid);
