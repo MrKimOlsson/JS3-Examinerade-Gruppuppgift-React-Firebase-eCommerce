@@ -4,50 +4,64 @@ import { NavLink } from 'react-router-dom';
 import { CiEdit } from 'react-icons/ci';
 import './userProfile.scss';
 import { db } from '../../firebase/config';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, getFirestore, updateDoc, collection } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../app/action'
 
 
 function UserProfile() {
+
+    const id = localStorage.getItem('uid')
+
+    const string = localStorage.getItem('user')
+    const loggedUser = JSON.parse(string)
+    // console.log(loggedUser)
+
+    const db = getFirestore()
+    const docRef = doc(db, 'users', id)
+
+
     const dispatch = useDispatch()
     const [edit, setEdit] = useState(false)
-    const [updateUser, setUpdateUser] = useState()
+    const [userInfo, setUserInfo] = useState([]);
+    const [updateUser, setUpdateUser] = useState({
+        firstName: loggedUser && loggedUser.firstName || '',
+        lastName: loggedUser && loggedUser.lastName || '',
+        streetName: loggedUser && loggedUser.streetName || '',
+        postalCode: loggedUser && loggedUser.postalCode || '',
+        city: loggedUser && loggedUser.city || '',
+        email: loggedUser && loggedUser.email || ''
+      });
 
     const handleChange = (event) => {
         const { name, value } = event.target;
         setUpdateUser((prevState) => ({ ...prevState, [name]: value }));
     };
-    const [userInfo, setUserInfo] = useState([]);
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const auth = getAuth();
-                const user = auth.currentUser;
-                if (user) {
-                    const userRef = doc(db, 'users', user.uid);
-                    const userSnap = await getDoc(userRef);
-                    
-                    if (userSnap.exists()) {
-                        const userData = userSnap.data();
-                        console.log(userData)
-                        // setUserInfo(localStorage.getItem(userData))
-                    }
-                }
-            } catch (error) {
-                console.error(error);
-            }
+    const handleSave = () => {
+        const updatedUser = {
+            ...loggedUser,
+            firstName: updateUser.firstName || loggedUser.firstName,
+            lastName: updateUser.lastName || loggedUser.lastName,
+            streetName: updateUser.streetName || loggedUser.streetName,
+            postalCode: updateUser.postalCode || loggedUser.postalCode,
+            city: updateUser.city || loggedUser.city,
+            email: updateUser.email || loggedUser.email
         };
 
-        fetchUserData();
-    }, []);
 
+        updateDoc(docRef, updatedUser)
+        .then(docRef => {
+            console.log('doc updated')
+            localStorage.setItem('user', JSON.stringify(updatedUser))
+            setUpdateUser(updatedUser)
+        }) .catch ( err => {
+            console.log(err.message)
+        })
+        setEdit(false)
+    }
 
-    const string = localStorage.getItem('user')
-    const loggedUser = JSON.parse(string)
-    console.log(loggedUser)
 
 
     // console.log(userInfo.streetName)
@@ -64,7 +78,16 @@ function UserProfile() {
                             <div className="up-user-detail">
                                 <input
                                     name="firstName"
-                                    value={userInfo && userInfo.firstName}
+                                    placeholder={loggedUser && loggedUser.firstName}
+                                    type="text"
+                                    className="up-edit-input"
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="up-user-detail">
+                                <input
+                                    name="lastName"
+                                    placeholder={loggedUser && loggedUser.lastName}
                                     type="text"
                                     className="up-edit-input"
                                     onChange={handleChange}
@@ -73,7 +96,7 @@ function UserProfile() {
                             <div className="up-user-detail">
                                 <input
                                     name="streetName"
-                                    value={userInfo.streetName}
+                                    placeholder={loggedUser && loggedUser.streetName}
                                     type="text"
                                     className="up-edit-input"
                                     onChange={handleChange}
@@ -82,7 +105,7 @@ function UserProfile() {
                             <div className="up-user-detail">
                                 <input
                                     name="postalCode"
-                                    value={userInfo.postalCode}
+                                    placeholder={loggedUser && loggedUser.postalCode}
                                     type="text"
                                     className="up-edit-input"
                                     onChange={handleChange}
@@ -91,7 +114,7 @@ function UserProfile() {
                             <div className="up-user-detail">
                                 <input
                                     name="city"
-                                    value={userInfo.city}
+                                    placeholder={loggedUser && loggedUser.city}
                                     type="text"
                                     className="up-edit-input"
                                     onChange={handleChange}
@@ -100,7 +123,7 @@ function UserProfile() {
                             <div className="up-user-detail">
                                 <input
                                     name="email"
-                                    value={userInfo.email}
+                                    placeholder={loggedUser && loggedUser.email}
                                     type="text"
                                     className="up-edit-input"
                                     onChange={handleChange}
@@ -127,7 +150,7 @@ function UserProfile() {
                         </>
                     )}
                     {edit ? (
-                        <button className="up-save">
+                        <button onClick={handleSave} className="up-save">
                             Save
                         </button>
                     ) : (
