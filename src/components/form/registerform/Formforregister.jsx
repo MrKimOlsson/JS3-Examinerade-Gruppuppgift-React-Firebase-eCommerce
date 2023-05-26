@@ -17,6 +17,8 @@ const Formforregister = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [profilePic, setProfilePic] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [company, setCompany] = useState('');
 
   const navigate = useNavigate();
 
@@ -55,6 +57,8 @@ const Formforregister = () => {
         city,
         email,
         profilePic,
+        mobile,
+        company
       };
       const docRef = doc(collectionRef, user.uid);
       await setDoc(docRef, userData);
@@ -72,12 +76,13 @@ const Formforregister = () => {
       setPassword('');
       setPasswordConfirm('');
       setProfilePic('');
+      setMobile('');
+      setCompany('');
       navigate('/');
     } catch (error) {
       console.error(error);
     }
   };
-
 
   return (
     <div className='form-register-wrapper'>
@@ -110,12 +115,12 @@ const Formforregister = () => {
           </div>
           <div className="top-section-register">
             <div className="register-section-name padding-between">
-              <label htmlFor="mobile">Mobile  (optional)</label>
-              <input className='half-register-input' type="number" id="mobile" />
+              <label htmlFor="mobile">Mobile (optional)</label>
+              <input className='half-register-input' type="number" id="mobile" value={mobile} onChange={(e) => setMobile(e.target.value)} />
             </div>
             <div className="register-section-name padding-between">
-              <label htmlFor="company">Company  (optional)</label>
-              <input className='half-register-input' type="text" id="company" />
+              <label htmlFor="company">Company (optional)</label>
+              <input className='half-register-input' type="text" id="company" value={company} onChange={(e) => setCompany(e.target.value)} />
             </div>
           </div>
           <div className='top-section-register-full padding-between'>
@@ -131,20 +136,21 @@ const Formforregister = () => {
             <input className="whole-register-input" type="password" id="passwordConfirm" value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)} />
           </div>
           <div className='top-section-register-full padding-between'>
-            <label htmlFor="streetname">Upload Profil (optional)</label>
+            <label htmlFor="streetname">Upload Profile (optional)</label>
             <input type="file"
               id="profilePic" name="profilePic"
               accept="image/png, image/jpeg" value={profilePic} onChange={handleProfilePicChange} />
           </div>
           <div className='section-terms'>
             <input type="checkbox" name="" id="" />
-            <p>I have read and accepts the terms and agreements</p>
+            <p>I have read and accept the terms and agreements</p>
           </div>
           <Btnregister />
         </Form>
       </div>
     </div>
-  )
+  );
 };
 
 export default Formforregister;
+

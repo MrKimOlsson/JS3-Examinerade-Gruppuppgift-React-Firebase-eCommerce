@@ -21,10 +21,16 @@ const cartSlice = createSlice({
     },
 
     removeFromCart: (state, action) => {
-      state.products = state.products.filter(
-        (product) => product.id !== action.payload.id
-      );
+      const productId = action.payload.id;
+      const existingProductIndex = state.products.findIndex((product) => product.id === productId);
+
+      if (existingProductIndex !== -1) {
+        const removedProduct = state.products[existingProductIndex];
+        state.products.splice(existingProductIndex, 1);
+        state.totalQuantity -= removedProduct.quantity;
+      }
     },
+
 
     updateQuantity: (state, action) => {
       const { productId, quantity } = action.payload;
