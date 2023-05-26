@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
 import { getFirestore } from 'firebase/firestore';
 import { collection, addDoc } from 'firebase/firestore';
 
@@ -9,6 +8,7 @@ import './totalSum.scss';
 function TotalSum({ cartItems }) {
     const user = useSelector(state => state.auth.user);
     const [orderPlaced, setOrderPlaced] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true); // Set the initial value to true
 
     const calculateTotalPrice = () => {
         if (!cartItems || cartItems.length === 0) {
@@ -31,6 +31,7 @@ function TotalSum({ cartItems }) {
         console.log('cartItems:', cartItems);
 
         if (!user) {
+            setIsLoggedIn(false); // Set isLoggedIn to false when user is not logged in
             console.log('User not logged in. Cannot create order.');
             return;
         }
@@ -51,7 +52,7 @@ function TotalSum({ cartItems }) {
                 userId: user.id,
                 products: orders,
                 totalPrice: totalPrice,
-                status: 'Order placed' 
+                status: 'Order placed'
             };
 
             await addDoc(ordersRef, orderData);
@@ -61,7 +62,6 @@ function TotalSum({ cartItems }) {
             console.error('Error during checkout:', error);
         }
     };
-
 
     return (
         <div className="totalSum-wrapper">
@@ -80,6 +80,11 @@ function TotalSum({ cartItems }) {
                         <p>Total price (incl. moms)</p>
                         <p className="bold">{calculateTotalPrice()} kr</p>
                     </div>
+                    {!isLoggedIn && (
+                        <div className="error-message">
+                            <p className='errortext'>* You must log in to place an order *</p>
+                        </div>
+                    )}
                     {orderPlaced ? (
                         <div className="order-placed-message">
                             <p>Order placed!</p>
@@ -94,6 +99,7 @@ function TotalSum({ cartItems }) {
 }
 
 export default TotalSum;
+
 
 
 
