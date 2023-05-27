@@ -12,8 +12,8 @@ const Formforlogin = ({ handleLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState(false);
-  const [emailError, setEmailError] = useState(false); // State variable for email error
-  const [passwordError, setPasswordError] = useState(false); // State variable for password error
+  const [emailError, setEmailError] = useState(false); 
+  const [passwordError, setPasswordError] = useState(false); 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
