@@ -8,7 +8,6 @@ import SearchModal from './search/SearchModal'
 import { clearUser } from '../../../app/action'
 import { useDispatch, useSelector } from 'react-redux'
 import { BiUserPin } from 'react-icons/bi'
-import { RiLogoutBoxRLine } from 'react-icons/ri'
 
 
 const Navbar = ({ products, isLoggedIn, setIsLoggedIn}) => {
@@ -40,7 +39,7 @@ const Navbar = ({ products, isLoggedIn, setIsLoggedIn}) => {
           {isLoggedIn ? ( // show the logout button if the user is logged in
             <>
               <li><NavLink className='nav-link lowercase opacity' to='/userprofile'><BiUserPin className='user-icon' /></NavLink></li>
-              <li><NavLink className='nav-link lowercase opacity' to='/login' onClick={handleLogout}><RiLogoutBoxRLine title='Logout' className='user-icon'/></NavLink></li>
+              <li><NavLink className='nav-link lowercase opacity' to='/login' onClick={handleLogout}>Logout</NavLink></li>
             </>
           ) : ( // show the login button if the user is logged out
             <>
