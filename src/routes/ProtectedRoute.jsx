@@ -1,13 +1,12 @@
-import authService from "../services/authService";
-import { Navigate, useLocation } from 'react-router-dom'
+import { useSelector } from "react-redux";
+import { Navigate } from 'react-router-dom'
 
 export const ProtectedRoute = ({ children }) => {
 
-  const location = useLocation()
-  const autheticated = authService.isAuthenticated()
+  const { user } = useSelector(state => state.auth)
+    if(!user) return <Navigate to='/login'/>
 
-  return autheticated 
+  return user 
   ? children
   : <Navigate to="/login" replace state={{ from: location.pathname }} />
-
 }

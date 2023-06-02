@@ -90,11 +90,11 @@ const App = () => {
         },
         {
           path: 'userprofile',
-          element: <UserProfile />
+          element: <ProtectedRoute><UserProfile /></ProtectedRoute> 
         },
         {
           path: 'userorders',
-          element: <UserOrders />
+          element: <ProtectedRoute><UserOrders /></ProtectedRoute> 
         },
         {
           path: 'register',
