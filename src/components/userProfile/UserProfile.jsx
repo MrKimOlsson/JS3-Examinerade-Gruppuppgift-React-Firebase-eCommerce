@@ -12,9 +12,6 @@ import { setUser } from '../../app/action'
 
 function UserProfile() {
 
-    const { user } = useSelector(state => state.auth)
-    if(!user) return <Navigate to='/login'/>
-
     const id = localStorage.getItem('uid')
     console.log(id)
 
