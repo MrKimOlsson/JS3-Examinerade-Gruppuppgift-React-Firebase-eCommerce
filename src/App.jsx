@@ -23,6 +23,7 @@ import Pants from './pages/categories/Pants'
 import Sweaters from './pages/categories/Sweaters'
 import Tshirts from './pages/categories/Tshirts'
 import UserOrders from './pages/UserOrders'
+import { ProtectedRoute } from './routes/ProtectedRoute'
 
 
 const App = () => {
@@ -89,11 +90,11 @@ const App = () => {
         },
         {
           path: 'userprofile',
-          element: <UserProfile />
+          element: <ProtectedRoute><UserProfile /></ProtectedRoute> 
         },
         {
           path: 'userorders',
-          element: <UserOrders />
+          element: <ProtectedRoute><UserOrders /></ProtectedRoute> 
         },
         {
           path: 'register',

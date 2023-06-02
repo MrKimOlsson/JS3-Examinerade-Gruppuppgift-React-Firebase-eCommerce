@@ -11,8 +11,8 @@ function CartItems({ product }) {
 
     const handleRemoveFromCart = (product) => {
         dispatch(removeFromCart(product));
-        dispatch(resetCart())
     };
+
 
 
     const handleQuantityChange = (e, product) => {
