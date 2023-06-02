@@ -6,27 +6,32 @@ import Formbtn from './btnlogin/Formbtn';
 import './Formforlogin.scss';
 import { useDispatch } from 'react-redux';
 import { getFirestore, collection, doc, getDoc } from 'firebase/firestore';
+import { setToken } from '../../../app/action';
+
 
 
 const Formforlogin = ({ handleLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   const submitLogin = async (e) => {
     const auth = getAuth();
-    const db = getFirestore(); 
+    const db = getFirestore();
     e.preventDefault();
 
     console.log('Email:', email);
     console.log('Password:', password);
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      const userLogIn = await signInWithEmailAndPassword(auth, email, password);
+      const user = userLogIn.user;
       dispatch(setUser(user));
-      console.log('Logged in user:', user);
+      dispatch(setToken(userLogIn.accessToken));
+      localStorage.setItem('uid', user.uid)
+      localStorage.setItem('accessToken', user.accessToken)
+      // console.log('UserLogIn:::::', user.accessToken)
 
       const usersRef = collection(db, 'users');
       const userDocRef = doc(usersRef, user.uid);
@@ -35,6 +40,7 @@ const Formforlogin = ({ handleLogin }) => {
       if (userDocSnapshot.exists()) {
         const userData = userDocSnapshot.data();
         console.log('User data:', userData);
+        localStorage.setItem('user', JSON.stringify(userData))
 
       } else {
         console.log('User does not exist');

@@ -9,14 +9,12 @@ import Loader from '../components/loader/Loader'
 import { useParams, useLocation } from 'react-router-dom'
 
 
-
 function ProductDetails({ products }) {
   
   
-  const { id } = useParams();
-  
+  const { id } = useParams()
+
   const { data: product, error, loading } = useDoc('products', id)
-  
   if (!product) return (
     <div>
       {loading && <Loader />}
@@ -25,13 +23,6 @@ function ProductDetails({ products }) {
 
   )
     
-  
-  
-
-  
-  
-
-
 
 
   let matches = []

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../contactmap/contactmap.css'
+import '../contactmap/contactmap.scss'
 
 const Contactmap = () => {
   return (

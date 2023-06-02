@@ -3,15 +3,17 @@ import './cartItems.scss';
 import { BsTrash } from 'react-icons/bs';
 import { FaShippingFast } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart, updateQuantity } from '../../../app/cartSlice';
+import { removeFromCart, resetCart, updateQuantity } from '../../../app/cartSlice';
 
-function CartItems() {
+function CartItems({ product }) {
     const dispatch = useDispatch();
     const cartItems = useSelector((state) => state.cart.products);
 
     const handleRemoveFromCart = (product) => {
         dispatch(removeFromCart(product));
+        dispatch(resetCart())
     };
+
 
     const handleQuantityChange = (e, product) => {
         const quantity = parseInt(e.target.value, 10);
@@ -55,7 +57,7 @@ function CartItems() {
                         </select>
                         <p className="ci-details-price">{product.quantity} x {product.price} kr</p>
                         <button onClick={() => handleRemoveFromCart(product)}>
-                            <BsTrash /> Ta bort
+                            <BsTrash /> Remove
                         </button>
                     </div>
                 </div>

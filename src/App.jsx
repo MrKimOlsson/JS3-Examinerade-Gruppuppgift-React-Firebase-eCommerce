@@ -1,5 +1,5 @@
 import React from 'react'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from './store/products/productsSlice'
@@ -14,7 +14,6 @@ import Cart from './pages/Cart'
 import Register from './pages/Register'
 import ForgotPassword from './pages/ForgotPassword'
 import UserProfile from './pages/UserProfile'
-import AddProduct from './pages/AddProducts'
 import ProductSearch from './pages/ProductSearch'
 import Coats from './pages/categories/Coats'
 import Footwear from './pages/categories/Footwear'
@@ -26,19 +25,19 @@ import Tshirts from './pages/categories/Tshirts'
 import UserOrders from './pages/UserOrders'
 
 
-
 const App = () => {
 
   // Login
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem('user')
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser)
+    const loggedInUser = localStorage.getItem('accessToken')
+    if(loggedInUser) {
       setIsLoggedIn(true)
     }
   }, [])
+
+
   // ____________________________________________________________________________
 
   // Sending a dispatch to get the products from FireBase
@@ -79,10 +78,6 @@ const App = () => {
               ? <Products key={products.id} products={products} />
               : <h2>No products to show</h2>
           }</>
-        },
-        {
-          path: 'addProduct',
-          element: <AddProduct />,
         },
         {
           path: 'contact',

@@ -10,10 +10,9 @@ const Details = ({ product }) => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
 
-
   const handleAddToCart = () => {
     if (product) {
-      dispatch(addToCart({ ...product, quantity }));
+      dispatch(addToCart({ ...product, quantity: quantity }));
     }
   };
 
