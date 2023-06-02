@@ -14,12 +14,12 @@ const Hero = ({ products }) => {
     // Interval to dispal a new product every third second
     const interval = setInterval(() => {
       nextProduct()
-  }, 3000)
+   }, 3000)
 
     return () => {
       clearInterval(interval)
     }
-}, [products] )
+  }, [products] )
 
 
 // Previous product function

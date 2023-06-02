@@ -16,7 +16,7 @@ const Formforregister = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [profilePic, setProfilePic] = useState('');
+  // const [profilePic, setProfilePic] = useState('');
   const [mobile, setMobile] = useState('');
   const [company, setCompany] = useState('');
 
@@ -91,7 +91,7 @@ const Formforregister = () => {
         postalCode,
         city,
         email,
-        profilePic,
+        // profilePic,
         mobile,
         company,
       };
@@ -110,7 +110,7 @@ const Formforregister = () => {
       setEmail('');
       setPassword('');
       setPasswordConfirm('');
-      setProfilePic('');
+      // setProfilePic('');
       setMobile('');
       setCompany('');
       navigate('/');
@@ -165,24 +165,24 @@ const Formforregister = () => {
           </div>
           <div className="top-section-register-full padding-between">
             <label htmlFor="email">E-mail*</label>
-            <input className="whole-register-input" type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+            <input className="whole-register-input" type="text" id="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
             {emailError && <p className="error-message">* E-mail cannot be empty *</p>}
           </div>
           <div className="top-section-register-full padding-between">
             <label htmlFor="password">Password*</label>
-            <input className="whole-register-input" type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+            <input className="whole-register-input" type="password" id="password" autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)}/>
             {passwordError && <p className="error-message">* Password cannot be empty *</p>}
           </div>
           <div className="top-section-register-full padding-between">
             <label htmlFor="passwordConfirm">Confirm Password*</label>
-            <input className="whole-register-input" type="password" id="passwordConfirm" value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)}/>
+            <input className="whole-register-input" type="password" id="passwordConfirm" autoComplete="confim-new-password" value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)}/>
             {passwordConfirmError && <p className="error-message">* Confirm Password cannot be empty *</p>}
             {password !== passwordConfirm && <p className="error-message">* Passwords do not match *</p>}
           </div>
-          <div className="top-section-register-full padding-between">
+          {/* <div className="top-section-register-full padding-between">
             <label htmlFor="streetname">Upload Profile (optional)</label>
             <input type="file" id="profilePic" name="profilePic" accept="image/png, image/jpeg" value={profilePic} onChange={handleProfilePicChange}/>
-          </div>
+          </div> */}
           <div className="section-terms">
             <input type="checkbox" name="terms" id="terms" checked={termsChecked} onChange={(e) => setTermsChecked(e.target.checked)}/>
             <p>I have read and agree to the terms and conditions</p>

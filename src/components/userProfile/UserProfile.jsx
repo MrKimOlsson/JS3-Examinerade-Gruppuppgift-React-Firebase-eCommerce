@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { BiUserCircle } from 'react-icons/bi';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
 import { CiEdit } from 'react-icons/ci';
 import './userProfile.scss';
 import { db } from '../../firebase/config';
 import { doc, getDoc, getFirestore, updateDoc, collection } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../app/action'
 
 
 function UserProfile() {
 
+    const { user } = useSelector(state => state.auth)
+    if(!user) return <Navigate to='/login'/>
+
     const id = localStorage.getItem('uid')
+    console.log(id)
 
     const string = localStorage.getItem('user')
     const loggedUser = JSON.parse(string)
-    // console.log(loggedUser)
+    console.log(loggedUser)
 
     const db = getFirestore()
     const docRef = doc(db, 'users', id)

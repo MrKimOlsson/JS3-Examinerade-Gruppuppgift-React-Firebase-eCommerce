@@ -33,7 +33,6 @@ const Navbar = ({ products, isLoggedIn, setIsLoggedIn}) => {
           <li><NavLink className='nav-link' to='/'>Home</NavLink></li>
           <li><NavLink className='nav-link' to='/products'>Products</NavLink></li>
           <li><NavLink className='nav-link' to='/contact'>Contact</NavLink></li>
-          <li><NavLink className='nav-link' to='/addProduct'>Add-Products</NavLink></li>
           {/* <li><FiSearch className='opacity height' /></li> */}
           <SearchModal key={products._id} products={products} />
           {isLoggedIn ? ( // show the logout button if the user is logged in

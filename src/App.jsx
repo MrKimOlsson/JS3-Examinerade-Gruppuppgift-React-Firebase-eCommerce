@@ -14,7 +14,6 @@ import Cart from './pages/Cart'
 import Register from './pages/Register'
 import ForgotPassword from './pages/ForgotPassword'
 import UserProfile from './pages/UserProfile'
-import AddProduct from './pages/AddProducts'
 import ProductSearch from './pages/ProductSearch'
 import Coats from './pages/categories/Coats'
 import Footwear from './pages/categories/Footwear'
@@ -82,10 +81,6 @@ const App = () => {
           }</>
         },
         {
-          path: 'addProduct',
-          element: <AddProduct />,
-        },
-        {
           path: 'contact',
           element: <Contact />
         },
@@ -95,11 +90,11 @@ const App = () => {
         },
         {
           path: 'userprofile',
-          element: <ProtectedRoute><UserProfile /></ProtectedRoute> 
+          element: <UserProfile />
         },
         {
           path: 'userorders',
-          element: <ProtectedRoute><UserOrders /></ProtectedRoute> 
+          element: <UserOrders />
         },
         {
           path: 'register',
